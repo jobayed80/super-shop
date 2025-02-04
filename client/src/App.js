@@ -9,6 +9,7 @@ import ClientAuth from './pages/ClientAuth';
 import Orders from './pages/Orders';
 import FooterTop from './componnents/FooterTop';
 import CartDetails from './pages/CartDetails';
+import Cart from './pages/Cart';
 
 // import './index.css'
 
@@ -111,7 +112,8 @@ function App() {
             <Route path="/products" element={<Product />} />
             <Route path="/user-signin" element={<ClientAuth />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="//product-details/:id" element={<CartDetails />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/product-details/:id" element={<CartDetails />} />
            
           </Routes>
         </div>
