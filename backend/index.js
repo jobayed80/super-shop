@@ -12,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: "20
 
 
 const app = express();
-const port = process.env.PORT || 8005;
+const port = process.env.PORT || 8006;
 
 
 app.use(cors());
@@ -171,6 +171,39 @@ app.post("/send-cart-email", async (req, res) => {
   }
 });
 
+
+app.post("/create-checkout-session", async (req, res) => {
+  try {
+    const { products } = req.body;
+
+    // Create line items
+    const lineItems = products.map((product) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: product.name,
+          images: [product.image_url], // Use `images` instead of `image_url`
+        },
+        unit_amount: Math.round(product.price * 100),
+      },
+      quantity: product.quantity,
+    }));
+
+    // Create checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "http://localhost:3005/success", // Change to frontend success page
+      cancel_url: "http://localhost:3005/cancel",  // Change to frontend cancel page
+    });
+
+    res.status(200).json({ id: session.id });
+  } catch (error) {
+    console.error("Error creating checkout session: ", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 

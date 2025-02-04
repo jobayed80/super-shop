@@ -17,7 +17,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const Cart = () => {
 
-    const backendUrl = 'http://localhost:8005'; // Hardcoded variable
+    const backendUrl = 'https://super-shop-main-server.onrender.com'; // Hardcoded variable
 
     const navigate = useNavigate();
     const [cart, setCart] = useState([]);
@@ -180,7 +180,7 @@ const Cart = () => {
             "Content-Type": "application/json"
         }
 
-        const response = await fetch(`http://localhost:8000/create-checkout-session`, {
+        const response = await fetch(`${backendUrl}/create-checkout-session`, {
             method: "POST",
             headers: headers,
             body: JSON.stringify(body)
@@ -234,8 +234,8 @@ const Cart = () => {
             if (user?.email_confirmed_at) {
                 setEmail(user.email); // Store user information in the state
                 // navigate("user/signin")
-                handleSendEmail()  //this function Email send data
-                // handlePaymentStripe() //this function used payment gateway
+                // handleSendEmail()  //this function Email send data
+                handlePaymentStripe() //this function used payment gateway
 
             } else {
                 alert("Email is not verified. Redirecting to login...");
