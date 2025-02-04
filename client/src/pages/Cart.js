@@ -17,7 +17,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const Cart = () => {
 
-    const backendUrl = 'http://localhost:8001'; // Hardcoded variable
+    const backendUrl = 'http://localhost:8002'; // Hardcoded variable
 
     const navigate = useNavigate();
     const [cart, setCart] = useState([]);
