@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from './componnents/Header'; // Import the Navbar component
+// import './index.css'
+
 
 function App() {
   const [message, setMessage] = useState('');
@@ -16,13 +19,17 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>sdskasdcjv</h1>
-      
-      <h1>Client App</h1>
-      <p>Message from backend: {message}</p>
+    <div className="App bg-black">
+      <Header /> {/* Include the Navbar component */}
+      <div className="text-center mt-8">
+        <h1 className="text-4xl font-bold text-gray-800">sdskasdcjv</h1>
+        <h1 className="text-3xl font-semibold text-gray-700 mt-4 bg-red-500">Client App</h1>
+        <p className="text-xl text-gray-600 mt-2">
+          Message from backend: <span className="text-blue-500">{message}</span>
+        </p>
+      </div>
     </div>
   );
 }
 
-export default App; 
+export default App;
