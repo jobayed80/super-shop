@@ -7,7 +7,7 @@ import Header from './componnents/Header'; // Import the Navbar component
 function App() {
   const [message, setMessage] = useState('');
   const backendUrl = process.env.REACT_APP_BACKEND_URL; // Use environment variable
-  
+
   useEffect(() => {
     axios.get(`${backendUrl}/api`)
       .then(response => {
@@ -22,7 +22,7 @@ function App() {
     <div className="App bg-black">
       <Header /> {/* Include the Navbar component */}
       <div className="text-center mt-8">
-        <h1 className="text-4xl font-bold text-gray-800">sdskasdcjv</h1>
+        <h1 className="text-4xl font-bold text-gray-800">loremsksdgbuaaj fwegffgu      jhgfggggggjjjjjjjjjjjjjjjjj</h1>
         <h1 className="text-3xl font-semibold text-gray-700 mt-4 bg-red-500">Client App</h1>
         <p className="text-xl text-gray-600 mt-2">
           Message from backend: <span className="text-blue-500">{message}</span>
