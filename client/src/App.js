@@ -6,8 +6,8 @@ import Header from './componnents/Header'; // Import the Navbar component
 
 function App() {
   const [message, setMessage] = useState('');
-  const backendUrl = 'http://localhost:8000'; // Hardcoded variable
-
+  const backendUrl = process.env.REACT_APP_BACKEND_URL; // Use environment variable
+  
   useEffect(() => {
     axios.get(`${backendUrl}/api`)
       .then(response => {

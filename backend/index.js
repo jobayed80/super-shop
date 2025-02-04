@@ -1,19 +1,18 @@
+// api/index.js
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const PORT = 8000;
+const port = process.env.PORT || 8000;
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Allow frontend to access backend
+app.use(express.json()); // Middleware for JSON data
 
-// Example route
+// Simple API endpoint
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from the backend!' });
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
