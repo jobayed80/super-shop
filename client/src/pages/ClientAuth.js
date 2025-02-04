@@ -84,7 +84,7 @@ const ClientAuth = () => {
     
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50  -mb-[300px]">
+    <div className="flex flex-col min-h-screen bg-gray-50 mt-[300px]">
     {/* Main Content */}
     <div className="flex-grow flex items-start justify-center pt-10">
       <div className="bg-white shadow-lg rounded-lg p-6 md:p-8 lg:p-10 w-full max-w-5xl">

@@ -6,6 +6,9 @@ import Footer from './componnents/Footer';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import ClientAuth from './pages/ClientAuth';
+import Orders from './pages/Orders';
+import FooterTop from './componnents/FooterTop';
+import CartDetails from './pages/CartDetails';
 
 // import './index.css'
 
@@ -107,6 +110,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Product />} />
             <Route path="/user-signin" element={<ClientAuth />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="//product-details/:id" element={<CartDetails />} />
            
           </Routes>
         </div>
