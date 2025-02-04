@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './componnents/Header'; // Import the Navbar component
+
 // import './index.css'
 
 
 function App() {
   const [message, setMessage] = useState('');
-  const backendUrl = "http://localhost:8001"
+  const backendUrl = "https://super-shop-server-swo9.onrender.com"
   
-
+  // https://super-shop-server-swo9.onrender.com
   useEffect(() => {
     axios.get(`${backendUrl}/api`)
       .then(response => {
@@ -32,7 +33,7 @@ function App() {
 
   const sendEmail = async () => {
     try {
-      const response = await axios.post("http://localhost:8001/send-email", emailData);
+      const response = await axios.post(`${backendUrl}/send-email`, emailData);
       alert(response.data.message);
       console.error(response.data.message);
     } catch (error) {
