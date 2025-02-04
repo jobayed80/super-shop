@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from './componnents/Header'; // Import the Navbar component
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from './componnents/Header';
+import Footer from './componnents/Footer';
+import Home from './pages/Home';
+import Product from './pages/Product';
+import ClientAuth from './pages/ClientAuth';
 
 // import './index.css'
 
@@ -47,52 +52,69 @@ function App() {
 
 
   return (
-    <div className="App bg-black">
-      <Header /> {/* Include the Navbar component */}
-      <div className="text-center mt-8">
-        <h1 className="text-4xl font-bold text-gray-800">loremsksdgbuaaj fwegffgu      jhgfggggggjjjjjjjjjjjjjjjjj</h1>
-        <h1 className="text-3xl font-semibold text-gray-700 mt-4 bg-red-500">Client App</h1>
-        <p className="text-xl text-gray-600 mt-2">
-          Message from backend: <span className="text-blue-500">{message}</span>
-        </p>
+    // <div className="App bg-black">
+    //   <Header /> {/* Include the Navbar component */}
+    //   <div className="text-center mt-8">
+    //     <h1 className="text-4xl font-bold text-gray-800">loremsksdgbuaaj fwegffgu      jhgfggggggjjjjjjjjjjjjjjjjj</h1>
+    //     <h1 className="text-3xl font-semibold text-gray-700 mt-4 bg-red-500">Client App</h1>
+    //     <p className="text-xl text-gray-600 mt-2">
+    //       Message from backend: <span className="text-blue-500">{message}</span>
+    //     </p>
+    //   </div>
+
+
+
+    //   jobayed35-2948@diu.edu.bd
+    //   <div className="p-4 max-w-md mx-auto">
+    //   <h2 className="text-xl font-bold mb-4">Send Email</h2>
+    //   <input
+    //     type="email"
+    //     name="to"
+    //     placeholder="Recipient Email"
+    //     value={emailData.to}
+    //     onChange={handleChange}
+    //     className="border p-2 w-full mb-2"
+    //   />
+    //   <input
+    //     type="text"
+    //     name="subject"
+    //     placeholder="Subject"
+    //     value={emailData.subject}
+    //     onChange={handleChange}
+    //     className="border p-2 w-full mb-2"
+    //   />
+    //   <textarea
+    //     name="text"
+    //     placeholder="Message"
+    //     value={emailData.text}
+    //     onChange={handleChange}
+    //     className="border p-2 w-full mb-2"
+    //   />
+    //   <button onClick={sendEmail} className="bg-blue-500 text-white p-2 rounded">
+    //     Send Email
+    //   </button>
+    // </div>
+
+
+
+    // </div>
+
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/user-signin" element={<ClientAuth />} />
+           
+          </Routes>
+        </div>
+        <Footer />
       </div>
+    </Router>
 
 
-
-      jobayed35-2948@diu.edu.bd
-      <div className="p-4 max-w-md mx-auto">
-      <h2 className="text-xl font-bold mb-4">Send Email</h2>
-      <input
-        type="email"
-        name="to"
-        placeholder="Recipient Email"
-        value={emailData.to}
-        onChange={handleChange}
-        className="border p-2 w-full mb-2"
-      />
-      <input
-        type="text"
-        name="subject"
-        placeholder="Subject"
-        value={emailData.subject}
-        onChange={handleChange}
-        className="border p-2 w-full mb-2"
-      />
-      <textarea
-        name="text"
-        placeholder="Message"
-        value={emailData.text}
-        onChange={handleChange}
-        className="border p-2 w-full mb-2"
-      />
-      <button onClick={sendEmail} className="bg-blue-500 text-white p-2 rounded">
-        Send Email
-      </button>
-    </div>
-
-
-
-    </div>
   );
 }
 

@@ -1,7 +1,20 @@
-import React from 'react';
+import React from "react";
 
 const Home: React.FC = () => {
-  return <div>Home Page</div>;
+  return (
+    <div className="container mx-auto mt-10 p-6">
+      <h1 className="text-4xl font-bold text-center text-blue-700">Welcome to Super Shop</h1>
+      <p className="text-lg text-gray-600 text-center mt-4">
+        Your one-stop shop for all the best products. Shop now and enjoy amazing deals!
+      </p>
+      
+      <div className="flex justify-center mt-6">
+        <a href="/products" className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+          Explore Products
+        </a>
+      </div>
+    </div>
+  );
 };
 
 export default Home;
