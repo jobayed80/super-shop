@@ -1,18 +1,18 @@
-// api/index.js
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors()); // Allow frontend to access backend
-app.use(express.json()); // Middleware for JSON data
+// Middleware
+app.use(cors());
+app.use(express.json());
 
-// Simple API endpoint
+// API Route
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello from the backend!' });
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// Export the app (for Vercel)
+module.exports = app;
