@@ -17,7 +17,8 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const Cart = () => {
 
-    const backendUrl = 'https://super-shop-main-server.onrender.com'; // Hardcoded variable
+    // const backendUrl = 'https://super-shop-main-server.onrender.com'; // Hardcoded variable
+    const backendUrl = 'http://localhost:8006'; // Hardcoded variable
 
     const navigate = useNavigate();
     const [cart, setCart] = useState([]);
@@ -234,7 +235,7 @@ const Cart = () => {
             if (user?.email_confirmed_at) {
                 setEmail(user.email); // Store user information in the state
                 // navigate("user/signin")
-                // handleSendEmail()  //this function Email send data
+                handleSendEmail()  //this function Email send data
                 handlePaymentStripe() //this function used payment gateway
 
             } else {
