@@ -1,25 +1,51 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+// api/index.js
+const express = require("express");
+const cors = require("cors");
+const nodemailer = require("nodemailer");
+require("dotenv").config(); // Load environment variables
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8001;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// API Route
-app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the backend!' });
+// Nodemailer transporter setup
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // Your email
+    pass: process.env.EMAIL_PASS, // Your email password or app password
+  },
 });
 
-// Export the app for Render
-module.exports = app;
+// API endpoint to send email
+app.post("/send-email", async (req, res) => {
+  const { to, subject, text } = req.body;
 
-// Only listen on port in local environment, not on Render
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-  });
-}
+  try {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to,
+      subject,
+      text,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: "Email sent successfully!" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).json({ success: false, message: "Failed to send email" });
+  }
+});
+
+// Simple API endpoint
+app.get('/api', (req, res) => {
+  res.json({ message: 'Hello from the backend Jobayed!' });
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+
