@@ -194,8 +194,8 @@ app.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:3005/success", // Change to frontend success page
-      cancel_url: "http://localhost:3005/cancel",  // Change to frontend cancel page
+      success_url: "https://super-shop-eosin.vercel.app/success", // Change to frontend success page
+      cancel_url: "https://super-shop-eosin.vercel.app/cancel",  // Change to frontend cancel page
     });
 
     res.status(200).json({ id: session.id });
