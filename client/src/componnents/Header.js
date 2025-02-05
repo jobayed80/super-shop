@@ -33,9 +33,9 @@ const Header = () => {
     const [loading, setLoading] = useState(false);
   const bottomNavigation = [
     { title: "Home", link: "/" },
-    { title: "Shop", link: "/product" },
+    { title: "Shop", link: "/products" },
     // { title: "Cart", link: "/cart" },
-    { title: "Cart", link: "/cartMain" },
+    { title: "Cart", link: "/cart" },
     { title: "Orders", link: "/orders" },
     { title: "My Account", link: "/user-signin" },
 
