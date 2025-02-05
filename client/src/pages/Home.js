@@ -3,10 +3,14 @@ import BannerCategories from "../componnents/BannerCategories";
 import Blog from "../componnents/Blog";
 import FooterTop from "../componnents/FooterTop";
 import TopProduct from "./TopProduct";
+import Carousel from "../componnents/Carousel";
+import HeaderTopNew from "../componnents/HeaderTopNew";
+import HeaderTop from "../componnents/HeaderTop";
+
 
 const Home: React.FC = () => {
   return (
-    <div className="container mx-auto mt-10 p-6">
+    <div className="mx-auto mt-10">
       {/* <h1 className="text-4xl font-bold text-center text-blue-700">Welcome to Super Shop</h1>
       <p className="text-lg text-gray-600 text-center mt-4">
         Your one-stop shop for all the best products. Shop now and enjoy amazing deals!
@@ -17,6 +21,9 @@ const Home: React.FC = () => {
           Explore Products
         </a>
       </div> */}
+      
+      {/* <Carousel></Carousel> */}
+      <HeaderTop></HeaderTop>
       <TopProduct></TopProduct>
       <BannerCategories></BannerCategories>
       <Blog></Blog>

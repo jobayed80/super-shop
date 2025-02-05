@@ -163,7 +163,7 @@ const Product: React.FC = () => {
   };
 
   return (
-    <div className="container flex h-screen max-w-screen-2xl mx-auto py-10 px-4 lg:px-0">
+    <div className="container flex h-screen max-w-screen-2xl mx-auto py-10 px-4 lg:px-0 mt-20">
       {/* Animated Side Menu */}
       
       

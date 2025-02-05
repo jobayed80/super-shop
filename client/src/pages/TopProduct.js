@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from '../lib/createClient';
 import { useNavigate } from "react-router-dom";
-import { FiShoppingCart, FiHeart, FiInfo } from "react-icons/fi";
+import { FiShoppingCart, FiHeart, FiInfo , FiStar } from "react-icons/fi";
 import { Button, notification } from 'antd';
 import { CheckCircleOutlined, SmileOutlined } from "@ant-design/icons";
 import "antd/dist/reset.css"; // Import Ant Design styles
@@ -31,7 +31,7 @@ const TopProduct = () => {
     } else if (screenWidth < 1024) {
       setProductsPerPage(8); // Tablet (e.g., 640px - 1024px)
     } else {
-      setProductsPerPage(12); // Desktop (1024px and above)
+      setProductsPerPage(8); // Desktop (1024px and above)
     }
   };
 
@@ -110,94 +110,123 @@ const TopProduct = () => {
 
 
   return (
-    <div className="p-4">
+    <div className="container mx-auto mt-12 p-4 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen">
       {contextHolder} {/* Add this line to render the notification context */}
-      {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {currentProducts.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white shadow-lg rounded-2xl p-4 relative group hover:shadow-xl transition-all"
-          >
-            <div className="relative">
-              <LazyLoadImage
-                src={product.image_url}
-                alt={product.name}
-                className="w-full h-48 object-cover rounded-md mb-4 cursor-pointer"
-                onClick={() => handleProductDetails(product.id)}
-              />
-              {/* Hover Icons */}
-              <div onClick={() => handleProductDetails(product.id)} className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex justify-end items-start p-4 transition-all">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent the parent div's onClick from firing
-                    handleAddToCart(product);
-                  }}
-                  className="p-2 bg-white rounded-full shadow-md hover:bg-gray-200 mr-2"
-                  title="Add to Cart"
-                >
-                  <FiShoppingCart className="text-gray-700" size={20} />
-                </button>
-                <button
-                  className="p-2 bg-white rounded-full shadow-md hover:bg-gray-200 mr-2"
-                  title="Add to Wishlist"
-                >
-                  <FiHeart className="text-gray-700" size={20} />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent the parent div's onClick from firing
-                    handleImageClick(product);
-                  }}
-                  className="p-2 bg-white rounded-full shadow-md hover:bg-gray-200"
-                  title="Product Details"
-                >
-                  <FiInfo className="text-gray-700" size={20} />
-                </button>
-              </div>
-            </div>
-            <div onClick={() => handleProductDetails(product.id)}>
-              <h2 className="text-lg font-bold">{product.name}</h2>
-              <p className="text-sm text-gray-600">Category: {product.category}</p>
-              <p className="text-gray-700 mt-2">Description: {product.description}</p>
-            </div>
-            <div className="flex items-center justify-between">
-              <p className="text-green-600 font-semibold mt-2">${product.price}</p>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent the parent div's onClick from firing
-                  handleAddToCart(product);
-                }}
-                className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:bg-blue-600"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Pagination Controls */}
-      <div className="flex justify-between items-center mt-6">
+
+      {/* Product Grid */}
+      <div className="flex flex-col items-center justify-center p-8 bg-white">
+        {/* Main Title with Gradient Text */}
+        <h1 className="text-xl bg-gradient-to-b">
+          A Brush of Perfection
+        </h1>
+
+        {/* Subtitle or Tagline */}
+        <h2 className="mt-2 text-2xl font-medium font-extrabold ">
+          Confectionary Creations
+        </h2>
+
+        {/* Description */}
+        <p className="mt-4 max-w-xl text-center text-gray-700 text-lg">
+          Indulge in our collection of artisanal sweets, where every treat is crafted with passion and precision.
+        
+        </p>
+      </div>
+      <hr></hr>
+
+      
+
+
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+  {currentProducts.map((product) => (
+    <div
+      key={product.id}
+      className="bg-white shadow-xl rounded-2xl p-4 relative group hover:shadow-2xl transition-all border border-gray-200 hover:border-gray-300"
+    >
+      <div className="relative">
+        <LazyLoadImage
+          src={product.image_url}
+          alt={product.name}
+          className="w-full h-48 object-cover rounded-md mb-4 cursor-pointer hover:scale-105 transition-transform duration-300"
+          onClick={() => handleProductDetails(product.id)}
+        />
+        {/* Hover Icons */}
+        <div onClick={() => handleProductDetails(product.id)} className="absolute inset-0 bg-red-800  opacity-0 group-hover:opacity-100 flex justify-end items-start p-4 transition-all">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleAddToCart(product);
+            }}
+            className="p-2 bg-red-300 rounded-full shadow-lg  mr-2 transition-all"
+            title="Add to Cart"
+          >
+            <FiShoppingCart className="text-blue-600" size={20} />
+          </button>
+          <button
+            className="p-2 bg-red-400 rounded-full shadow-lg mr-2 transition-all"
+            title="Add to Wishlist"
+          >
+            <FiHeart className="text-red-500" size={20} />
+          </button>
+        </div>
+      </div>
+      <div onClick={() => handleProductDetails(product.id)}>
+        <h2 className="text-lg font-semibold text-gray-900">{product.name}</h2>
+        <p className="text-sm text-gray-500">Category: {product.category}</p>
+        <div className="flex items-center mt-2">
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <FiStar
+                key={i}
+                className={ratingValue <= (product.rating || 0) ? "text-red-400" : "text-red-300"}
+                size={20}
+              />
+            );
+          })}
+        </div>
+        {/* <p className="text-gray-700 mt-2 text-sm">{product.description}</p> */}
+      </div>
+      <div className="flex items-center justify-between mt-3">
+        <p className="text-green-600 font-semibold pt-5">${product.price}</p>
         <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 disabled:opacity-50"
-          disabled={currentPage === 1}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleAddToCart(product);
+          }}
+          className="bg-blue-600 px-4 py-2 text-white rounded-lg hover:bg-blue-700 transition-all"
         >
-          Previous
-        </button>
-        <span className="text-gray-700">
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 disabled:opacity-50"
-          disabled={currentPage === totalPages}
-        >
-          Next
+          Add to Cart
         </button>
       </div>
     </div>
+  ))}
+</div>
+
+      
+
+
+    {/* Pagination Controls */}
+    <div className="flex justify-between items-center mt-6">
+      <button
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 disabled:opacity-50 transition-all"
+        disabled={currentPage === 1}
+      >
+        Previous
+      </button>
+      <span className="text-gray-700">
+        Page {currentPage} of {totalPages}
+      </span>
+      <button
+        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 disabled:opacity-50 transition-all"
+        disabled={currentPage === totalPages}
+      >
+        Next
+      </button>
+    </div>
+  </div>
   );
 };
 
