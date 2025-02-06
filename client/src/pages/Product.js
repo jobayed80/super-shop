@@ -9,6 +9,8 @@ import { CheckCircleOutlined, SmileOutlined } from "@ant-design/icons";
 import { FiMenu, FiCoffee, FiGift, FiShoppingBag, FiPieChart, FiStar } from "react-icons/fi";
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import Slider from "react-slick"; // For carousel
+import { IoArrowBackOutline } from "react-icons/io5";
+import { GrFormNextLink } from "react-icons/gr";
 
 const Product: React.FC = () => {
   const [products, setProducts] = useState([]);
@@ -68,18 +70,18 @@ const Product: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    fetchData(category);
-    if (category === "All") {
-      // Show all products when "All" is selected
-      setProducts(products);
-    } else {
-      // Filter products based on selected category
-      const filteredProducts = products.filter((product) => product.category === category);
-      setProducts(filteredProducts);
-    }
-  };
+  // const handleCategoryClick = (category) => {
+  //   setSelectedCategory(category);
+  //   fetchData(category);
+  //   if (category === "All") {
+  //     // Show all products when "All" is selected
+  //     setProducts(products);
+  //   } else {
+  //     // Filter products based on selected category
+  //     const filteredProducts = products.filter((product) => product.category === category);
+  //     setProducts(filteredProducts);
+  //   }
+  // };
 
   const handleProductDetails = (id) => {
     localStorage.setItem("scrollPosition", window.scrollY.toString());
@@ -185,6 +187,27 @@ const Product: React.FC = () => {
     }
   };
 
+
+
+    const [startIndex, setStartIndex] = useState(0);
+  
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    navigate(`/category/${category}`);
+};
+
+const handleNext = () => {
+    if (startIndex + itemsPerPage < categories.length) {
+        setStartIndex(startIndex + 1);
+    }
+};
+
+const handlePrev = () => {
+    if (startIndex > 0) {
+        setStartIndex(startIndex - 1);
+    }
+};
+
   return (
 
     <div className=" bg-gradient-to-r from-white via-gray-200 to-gray-400">
@@ -206,71 +229,28 @@ const Product: React.FC = () => {
         </div>
 
 
-        
+
 
         {/* Animated Side Menu */}
-        <motion.div
-          initial={{ x: "-100%" }}
-          animate={{ x: isMenuOpen ? 0 : "-100%" }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed z-20   p-4 h-full w-auto md:relative md:flex md:flex-row items-center justify-start"
-          style={{ top: "3rem" }} // Adjust this value to control how far below the top content the menu starts
-        >
-          {/* Categories List with Animation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isMenuOpen ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-            className="overflow-x-auto space-x-6 pb-4 flex justify-center items-center"
-          >
-            <ul className="flex gap-6 ml-10">
-              {categories
-                .slice(currentCategoryIndex, currentCategoryIndex + categoriesPerPage)
-                .map(({ name, icon: Icon }) => (
-                  <motion.li
-                    key={name}
-                    className={`flex items-center text-sm gap-3 p-2 cursor-pointer rounded-lg transition-all ${selectedCategory === name
-                        ? "bg-blue-500 text-white font-semibold"
-                        : "hover:bg-gray-100"
-                      }`}
-                    onClick={() => handleCategoryClick(name)}
-                    whileHover={{ scale: 1.1 }} // Simple hover effect for animation
-                  >
-                    <Icon size={20} />
-                    {name}
-                  </motion.li>
-                ))}
-            </ul>
-          </motion.div>
-
-          {/* Navigation Arrows */}
-          <div className="absolute top-1/2 left-0 transform -translate-y-1/2">
-            <button
-              onClick={prevCategoryPage}
-              className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
-              disabled={currentCategoryIndex === 0}
-            >
-              <FiArrowLeft size={24} />
-            </button>
+        {/* Category Navigation */}
+        <div className="flex items-center justify-center gap-4 my-10 flex-wrap">
+          <button onClick={handlePrev} className="px-2 py-1 bg-green-600 text-white rounded-lg disabled:opacity-50 text-lg" disabled={startIndex === 0}><IoArrowBackOutline></IoArrowBackOutline></button>
+          <div className="flex gap-2 overflow-x-auto flex-wrap">
+            {categories.slice(startIndex, startIndex + itemsPerPage).map(({ name }) => (
+              <div key={name} className={`px-2 py-2 text-sm md:text-lg flex items-center gap-3 shadow-sm rounded-lg cursor-pointer ${selectedCategory === name ? "bg-green-600 text-white" : "hover:bg-gray-100"}`} onClick={() => handleCategoryClick(name)}>
+                {name}
+              </div>
+            ))}
           </div>
-
-          <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
-            <button
-              onClick={nextCategoryPage}
-              className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 disabled:bg-gray-300"
-              disabled={currentCategoryIndex + categoriesPerPage >= categories.length}
-            >
-              <FiArrowRight size={24} />
-            </button>
-          </div>
-        </motion.div>
+          <button onClick={handleNext} className="px-2 py-1 bg-green-600 text-white rounded-lg disabled:opacity-50 text-lg" disabled={startIndex + itemsPerPage >= categories.length}><GrFormNextLink></GrFormNextLink></button>
+        </div>
 
         <hr className="text-3xl mt-2"></hr>
 
 
         {/* Main Content */}
         <div className="flex-1 p-4 overflow-y-auto">
-        
+
           {/* Product Display */}
           <div>
             <h2 className="text-2xl font-bold mb-4 mt-10">

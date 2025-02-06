@@ -35,9 +35,10 @@ const PopularCategories = () => {
   }, []);
 
   return (
-    <div className='bg-gradient-to-r from-white via-gray-200 to-gray-300 py-12'>
+    <div className='bg-gradient-to-r from-white via-gray-200 to-gray-300 py-12' data-aos="zoom-in">
       <div className="text-center">
-        <h1 className="text-4xl font-extrabold text-black mb-4 border-b-4 border-yellow-500 inline-block pb-2">
+        <h1 className="text-4xl font-extrabold text-black mb-4 border-b-4 border-yellow-500 inline-block pb-2"
+         style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #f8b400', display: 'inline-block', paddingBottom: '4px' }}>
           Popular Categories
         </h1>
         <p className="text-lg pt-5 font-semibold text-gray-700">
@@ -61,7 +62,7 @@ const PopularCategories = () => {
                   <h2 className="text-xl font-bold text-gray-900">{product.name}</h2>
                   <p className="text-gray-600 text-sm">{category}</p>
                   <div className="flex justify-center items-center mt-2">
-                    <FaShoppingCart className="text-yellow-500 text-xl mr-2" />
+                    {/* <FaShoppingCart className="text-yellow-500 text-xl mr-2" /> */}
                     <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-300">
                       Shop Now
                     </button>

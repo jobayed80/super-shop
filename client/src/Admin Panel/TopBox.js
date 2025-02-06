@@ -25,6 +25,9 @@ const AnimatedCard = ({ title, description, iconClass, bgColor }) => (
 // Main DashboardHome Component
 const TopBox = () => {
 
+
+  const backendUrl = 'https://super-shop-main-server.onrender.com'; // Hardcoded variable
+
   // toatl individual category product
   const [categoryCounts, setCategoryCounts] = useState({
     Candy: 0,
@@ -102,7 +105,7 @@ const TopBox = () => {
   const [totalOrders, setTotalOrders] = useState(0);
   // const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:8000/api/total-orders")
+    fetch(`${backendUrl}/api/total-orders`)
       .then((res) => res.json())
       .then((data) => {
         setTotalOrders(data.totalOrders);
@@ -116,7 +119,7 @@ const TopBox = () => {
 
   const [pendingOrders, setPendingOrders] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:8000/api/pending-orders")
+    fetch(`${backendUrl}/api/pending-orders`)
       .then((res) => res.json())
       .then((data) => {
         setPendingOrders(data.pendingOrders);
@@ -130,7 +133,7 @@ const TopBox = () => {
 
   const [totalSales, setTotalSales] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:8000/api/total-sales") // Adjust URL based on your server
+    fetch(`${backendUrl}/api/total-sales`) // Adjust URL based on your server
       .then((res) => res.json())
       .then((data) => {
         setTotalSales(data.totalSales);
@@ -144,7 +147,7 @@ const TopBox = () => {
 
   return (
 
-    <div className="p-6 container mx-auto">
+    <div className="p-6">
       {/* Grid Layout for Animated Cards (Top Section) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {/* Card 1 */}
@@ -220,7 +223,7 @@ const TopBox = () => {
           title="Total Cupcakes"
           description={categoryCounts.Cupcakes}
           iconClass="fas fa-cupcake text-4xl"
-          bgColor="bg-gradient-to-r from-purple-500 to-fuchsia-500"
+          bgColor="bg-gradient-to-r from-purple-500 to-gray-500"
         />
 
         {/* Card 6 */}
@@ -228,7 +231,7 @@ const TopBox = () => {
           title="Total Breads"
           description={categoryCounts.Breads}
           iconClass="fas fa-bread-slice text-4xl"
-          bgColor="bg-gradient-to-r from-cyan-500 to-blue-400"
+          bgColor="bg-gradient-to-r from-gray-500 to-blue-400"
         />
 
         {/* Card 7 */}

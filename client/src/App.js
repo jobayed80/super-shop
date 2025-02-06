@@ -23,6 +23,8 @@ import AdminSettings from './Admin Panel/AdminSettings';
 import SalesReports from './Admin Panel/SalesReports';
 import Customers from './Admin Panel/Customers';
 import AdminSidebar from './Admin Panel/AdminSidebar';
+import ProductDetails from './Admin Panel/ProductDetails';
+import AdminMainDashboard from './Admin Panel/AdminMainDashboard';
 // import Logout from './Admin Panel/Logout';
 
 function App() {
@@ -43,12 +45,13 @@ function App() {
                 <>
                   {/* Admin Routes */}
                   <Route path="/admin" element={<AdminDashboard />}>
-                    <Route index element={<h1 className='text-2xl'>Welcome to Admin Dashboard</h1>} />
-                    <Route path="dashboard" element={<h1 className='text-2xl'>Welcome to Admin Dashboard</h1>} />
+                    <Route index element={<AdminMainDashboard></AdminMainDashboard>} />
+                    <Route path="dashboard" element={<AdminMainDashboard/>} />
                     <Route path="product-management" element={<AdminProducts />} />
                     <Route path="sales-report" element={<SalesReports />} />
                     <Route path="customers" element={<Customers />} />
                     <Route path="settings" element={<AdminSettings />} />
+                    <Route path="product-details" element={<ProductDetails />} />
                     <Route path="sidebar" element={<AdminSidebar isAdmin={isAdmin} setIsAdmin={setIsAdmin} />} /> {/* just use korchi variable pass korar jnno  */}
                     {/* <Route path="logout" element={<Logout />} /> */}
                   </Route>

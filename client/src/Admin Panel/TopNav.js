@@ -54,7 +54,7 @@ const TopNav = () => {
             placeholder="Search..."
             className="w-full pl-10 pr-4 py-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
           />
-          <FaSearch className="absolute left-3 top-3 text-gray-200" />
+          {/* <FaSearch className="absolute left-3 top-3 text-gray-200" /> */}
         </div>
       </div>
 
@@ -81,7 +81,7 @@ const TopNav = () => {
             className="flex items-center space-x-2 focus:outline-none"
           >
             <FaUserCircle className="text-gray-200 hover:text-white transition-colors" />
-            <span className="text-gray-200 hover:text-white">John Doe</span>
+            
             <FaChevronDown
               className={`text-gray-200 transition-transform ${
                 isProfileDropdownOpen ? "rotate-180" : ""
@@ -93,9 +93,9 @@ const TopNav = () => {
           {isProfileDropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
               <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                <p className="text-sm text-gray-800 dark:text-white">John Doe</p>
+                <p className="text-sm text-gray-800 dark:text-white">Ali Abdullah</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  admin@example.com
+                  ali35-2932@diu.edu.bd
                 </p>
               </div>
               <ul className="py-2">

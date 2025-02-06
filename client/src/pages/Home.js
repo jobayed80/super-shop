@@ -26,7 +26,7 @@ const Home: React.FC = () => {
       
       {/* <Carousel></Carousel> */}
       <HeaderTop></HeaderTop>
-      <CarouselCompany></CarouselCompany>
+      
       <PopularCategories></PopularCategories>
       <TopProduct></TopProduct>
       <BannerCategories></BannerCategories>

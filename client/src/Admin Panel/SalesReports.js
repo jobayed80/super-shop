@@ -38,13 +38,14 @@ const SalesReports = () => {
     ],
   });
 
+  const backendUrl = 'https://super-shop-main-server.onrender.com'; // Hardcoded variable
 
   const [orders, setOrders] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/orders")
+    fetch(`${backendUrl}/api/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch((err) => console.error("Error fetching orders:", err));

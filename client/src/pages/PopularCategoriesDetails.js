@@ -26,7 +26,7 @@ const categories = [
 
 const PopularCategoriesDetails = () => {
 
-    const [api, contextHolder] = notification.useNotification();
+      const [api, contextHolder] = notification.useNotification();
     const { categoryName } = useParams();
     const [products, setProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(categoryName || "");
@@ -125,8 +125,6 @@ const PopularCategoriesDetails = () => {
         <div className="bg-gradient-to-r from-white via-gray-200 to-gray-300">
 
             {contextHolder} {/* Add this line to render the notification context */}
-
-
             <div className=" min-h-screen p-6 pt-24 container mx-auto">
                 {/* Top Section */}
                 <motion.div className="text-center mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>

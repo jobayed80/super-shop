@@ -4,7 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 const Blog = () => {
   return (
     <>
-      <div className="bg-gradient-to-r from-white via-gray-200 to-gray-300">
+      <div data-aos="zoom-in" className="bg-gradient-to-r from-white via-gray-200 to-gray-300">
         <section className="container mx-auto lg:pt-[10px] lg:pb-20 transition-all pt-20">
           {/* Updated Title and Subtitle */}
           {/* Blog Main Title and Subtitle */}
@@ -27,7 +27,7 @@ const Blog = () => {
 
           <div className="flex flex-wrap justify-center -mx-4 mt-24">
             {/* Blog Item 1 */}
-            <div className="w-full px-4 md:w-1/2 lg:w-1/3 mb-8">
+            <div data-aos="zoom-in" className="w-full px-4 md:w-1/2 lg:w-1/3 mb-8">
               <div className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition-all">
                 <div className="mb-8 overflow-hidden rounded-t-lg">
                   <img

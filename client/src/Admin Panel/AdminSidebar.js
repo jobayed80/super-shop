@@ -65,12 +65,12 @@ const AdminSidebar = ({isAdmin, setIsAdmin}) => {
         <div className="p-5 text-center border-b border-gray-700">
           <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gray-700 flex items-center justify-center">
             <img
-              src="https://via.placeholder.com/150" // Replace with your profile image URL
+              src="https://scontent.fdac155-1.fna.fbcdn.net/v/t39.30808-1/474951097_3935186093435549_3872658062708882747_n.jpg?stp=cp6_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFrG5vOqmSsmrQDpMrxbDu7z8Rcd9piZfLPxFx32mJl8gm0Qlnwj0raFMZCkNU3s87AFPjl1mxFXsfN5s9CRuAG&_nc_ohc=9OL1ECpeXSYQ7kNvgH36muZ&_nc_oc=Adi39mmYhA443R7PPDJtmv4BkLFRtUandppF8jPDfAAR2waIn8IuqiLmeJ-qGbeg1VM&_nc_zt=24&_nc_ht=scontent.fdac155-1.fna&_nc_gid=AWCe4-J32ILgGssPstzvrhW&oh=00_AYAcCZrsqA2C2dp6G8mBSbzfW8bXvjFUUjr66_k7Zt224A&oe=67AAD043" // Replace with your profile image URL
               alt="Profile"
               className="w-full h-full rounded-full"
             />
           </div>
-          <h3 className="text-lg font-semibold">John Doe</h3>
+          <h3 className="text-lg font-semibold">Ali Abdullah</h3>
           <p className="text-sm text-gray-400">Admin</p>
         </div>
 
@@ -103,6 +103,20 @@ const AdminSidebar = ({isAdmin, setIsAdmin}) => {
               >
                 <FaBox className="mr-3" />
                 Product Management
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/admin/product-details"
+                onClick={handleLinkClick}
+                className={`flex items-center p-3 rounded-lg transition-colors ${
+                  isActive("/admin/product-details")
+                    ? "bg-blue-600 text-white"
+                    : "hover:bg-gray-700"
+                }`}
+              >
+                <FaBox className="mr-3" />
+                Product Table
               </Link>
             </li>
             <li>

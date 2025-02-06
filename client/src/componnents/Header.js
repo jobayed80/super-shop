@@ -133,17 +133,18 @@ const Header = ({ isAdmin, setIsAdmin }) => {
   return (
     <div>
       {/* Navbar */}
-      <nav className="w-full bg-gradient-to-r from-white via-gray-100 to-gray-200 shadow-md p-4 fixed top-0 z-50">
+      <nav className="w-full bg-gradient-to-r from-white via-gray-500 to-gray-200 shadow-md p-8 fixed top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
-          <div className="text-xl font-bold text-gray-900">Sweet Delights</div>
+          <div class="text-xl font-bold text-gray-900 animate-bounce">Galaxy Shop</div>
+
 
           {/* Mobile Menu Icon */}
           <div className="md:hidden flex items-center justify-center gap-3">
-            <User
+            {/* <User
               onClick={toggleDropdown}
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
-            />
+            /> */}
             <FiMenu
               onClick={handleMenuToggle}
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
@@ -163,17 +164,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
               </Link>
             ))}
           </div>
-          {/* Search Bar (Centered on mobile and desktop) */}
-          <div className="hidden md:block w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2 border border-gray-300 rounded-md">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full p-2 border-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-          </div>
-
+          
 
           {/* Icons Section */}
           <div className="flex items-center space-x-4 hidden md:flex">
@@ -192,12 +183,10 @@ const Header = ({ isAdmin, setIsAdmin }) => {
             </header>
           </div>
 
-          <div className="flex items-center space-x-4 ">
-            {/* User Icon */}
+          {/* <div className="flex items-center space-x-4 ">        
             <div className="relative">
-
-              {/* Profile Dropdown */}
-              <AnimatePresence>
+           
+             <AnimatePresence>
                 {isDropdownOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
@@ -206,7 +195,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
                     transition={{ duration: 0.3 }}
                     className="absolute right-0 top-8 w-64 bg-gradient-to-r from-white via-gray-200 to-gray-400 rounded-md shadow-lg mt-5"
                   >
-                    {/* Profile Info */}
+                    
                     <div className="flex items-center space-x-4 my-3 ml-2">
                       <img
                         src="https://img.freepik.com/free-vector/cake-factory-banner-template_23-2148861831.jpg"
@@ -219,7 +208,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
                       </div>
                     </div>
                     <hr className="border-gray-400 mb-3" />
-                    {/* Menu Items */}
+                   
                     <div className="space-y-2">
                       <div onClick={closeDropdownOnSelect} className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm"><Link to={"/user-information"}>Profile</Link></div>
                       <div onClick={closeDropdownOnSelect} className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm">Settings</div>
@@ -236,7 +225,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
                 )}
               </AnimatePresence>
             </div>
-          </div>
+          </div> */}
 
 
 
