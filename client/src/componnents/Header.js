@@ -32,6 +32,7 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [email, setEmail] = useState("johndoe@example.com");
+  const [user, setUser] = useState(null);
   const bottomNavigation = [
     { title: "Home", link: "/" },
     { title: "Shop", link: "/products" },
@@ -68,6 +69,8 @@ const Header = () => {
     setIsDropdownOpen(false); // Close dropdown when selecting a menu item
   };
 
+
+  
 
 
   const navigate = useNavigate();
@@ -149,9 +152,14 @@ const Header = () => {
     if (savedPassword) setAdminPass(savedPassword);
   }, []);
 
-  const handleLogout = () => {
-
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut(); // Log out the user
+    
+      navigate("/"); // Redirect to login page or home page after logout
+    } catch (error) {
+      console.error("Error logging out:", error.message);
+    }
   };
 
 
@@ -173,7 +181,6 @@ const Header = () => {
   }, []); // Runs once when the component mounts
 
 
-  // Search user by email
 
 
 
@@ -292,69 +299,6 @@ const Header = () => {
 
 
 
-      {/* <div className="w-full bg-white text-whiteText">
-      
-      <div className="w-full bg-darkText text-white top-0 z-50">
-        <nav className="bg-gray-900 shadow-lg py-2">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-center h-16 relative">
-              <div className="hidden md:flex md:items-center md:space-x-6">
-                {bottomNavigation.map(({ title, link, icon }) => (
-                  <Link
-                    to={link}
-                    key={title}
-                    className={`flex items-center space-x-2 uppercase text-sm font-semibold duration-200 ${
-                      location.pathname === link
-                        ? "text-yellow-500"
-                        : "text-white/90 hover:text-white"
-                    }`}
-                  >
-                    {icon}
-                    <span>{title}</span>
-                  </Link>
-                ))}
-              </div>
-
-              
-              <div className="absolute top-4 right-4 md:hidden">
-                <button onClick={toggleMenu} className="text-white focus:outline-none">
-                  {isMenuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          
-          {isMenuOpen && (
-            <motion.div
-              className="md:hidden fixed inset-0 z-50 bg-gray-800 w-[200px]"
-              initial={{ opacity: 0, x: "-100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "-100%" }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="flex flex-col space-y-4 pt-12 px-6">
-                {bottomNavigation.map(({ title, link, icon }) => (
-                  <Link
-                    to={link}
-                    key={title}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex items-center space-x-4 text-lg font-semibold duration-200 ${
-                      location.pathname === link
-                        ? "text-yellow-500"
-                        : "text-white hover:text-yellow-500"
-                    }`}
-                  >
-                    {icon}
-                    <span>{title}</span>
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </nav>
-      </div>
-    </div> */}
 
 
     </div>

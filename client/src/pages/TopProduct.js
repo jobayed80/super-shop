@@ -110,14 +110,17 @@ const TopProduct = () => {
 
 
   return (
-    <div className="container mx-auto mt-12 p-4 bg-gradient-to-b from-blue-50 to-gray-100 min-h-screen">
+
+    <div className="bg-gradient-to-r from-white via-gray-200 to-gray-300 ">
+    <div className="container mx-auto  p-4  min-h-screen">
       {contextHolder} {/* Add this line to render the notification context */}
 
 
       {/* Product Grid */}
-      <div className="flex flex-col items-center justify-center p-8 bg-white">
+      <div className="flex flex-col items-center justify-center p-8">
         {/* Main Title with Gradient Text */}
-        <h1 className="text-xl bg-gradient-to-b">
+        <h1 className="text-4xl font-extrabold mb-4"
+        style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #f8b400', display: 'inline-block', paddingBottom: '4px' }}>
           A Brush of Perfection
         </h1>
 
@@ -139,7 +142,7 @@ const TopProduct = () => {
   {currentProducts.map((product) => (
     <div
       key={product.id}
-      className="bg-white shadow-xl rounded-2xl p-4 relative group hover:shadow-2xl transition-all border border-gray-200 hover:border-gray-300"
+      className="shadow-xl rounded-2xl p-4 relative group hover:shadow-2xl transition-all border border-gray-200 hover:border-gray-300"
     >
       <div className="relative">
         <LazyLoadImage
@@ -192,7 +195,7 @@ const TopProduct = () => {
             e.stopPropagation();
             handleAddToCart(product);
           }}
-          className="bg-blue-600 px-4 py-2 text-white rounded-lg hover:bg-blue-700 transition-all"
+          className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-blue-700 transition-all"
         >
           Add to Cart
         </button>
@@ -225,6 +228,8 @@ const TopProduct = () => {
       </button>
     </div>
   </div>
+
+    </div>
   );
 };
 

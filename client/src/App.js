@@ -15,6 +15,7 @@ import CancelPage from './componnents/StripePayment/CancelPage';
 import UserInformation from './pages/UserInformation';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import ScrollToTop from './componnents/ScrollToTop';
 
 // import './index.css'
 
@@ -108,7 +109,10 @@ function App() {
 
     // </div>
 
+    <>
+    
     <Router>
+      
       <div className="flex flex-col min-h-screen">
         <Header />
         <div className="flex-grow">
@@ -128,8 +132,10 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        <ScrollToTop /> {/* Add ScrollToTop Button */}
       </div>
     </Router>
+    </>
 
 
   );

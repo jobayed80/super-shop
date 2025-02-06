@@ -138,7 +138,8 @@ const HeaderTop = () => {
             {/* Right Side: Image with Overlay on Mobile */}
             <div className="w-full lg:w-1/2 mt-10 lg:mt-0 flex justify-center p-6 relative">
                 <img
-                    src="https://www.slazzer.com/downloads/dc3dda21-e3f2-11ef-a897-b347d7ab6478/image_prev_ui.png"
+                    // src="https://www.slazzer.com/downloads/dc3dda21-e3f2-11ef-a897-b347d7ab6478/image_prev_ui.png"
+                    src="https://img.freepik.com/free-photo/top-view-collection-isolated-breakfast-muffins_23-2148297930.jpg?uid=R170429557&ga=GA1.1.453133905.1736260813&semt=ais_hybrid"
                     alt="Confectionary Hero"
                     className="w-96 h-auto transform hover:scale-105 transition duration-500"
                 />

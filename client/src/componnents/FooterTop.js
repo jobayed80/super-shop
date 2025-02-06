@@ -27,14 +27,26 @@ const FooterTop = () => {
   ];
 
   return (
-    <>
-      <hr className="border-t-2 border-gray-300 my-4" />
-      <Container className="py-8">
-        <div className="max-w-7xl mx-auto p-6 md:p-10">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className="bg-gray-50 rounded-lg p-8 shadow-lg">
-              <h2 className="text-3xl font-bold text-indigo-900 mb-4">Get in Touch</h2>
-              <p className="text-gray-600 mb-8 text-sm">Feel free to contact us, and we will get back to you as soon as possible.</p>
+    <div className="bg-gradient-to-r from-white via-gray-200 to-gray-300">
+      {/* Title and Subtitle Section */}
+      <div className="text-center py-12 text-black">
+        <h1 className="text-4xl font-extrabold text-black mb-2"
+          style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #f8b400', display: 'inline-block', paddingBottom: '4px' }}>
+          Contact Us
+        </h1>
+        <p className="text-lg pt-5 font-semibold text-blackopacity-90">
+          We're here to help! Get in touch with us for any inquiries, feedback, or special orders.
+        </p>
+      </div>
+
+        <div className="container max-w-7xl mx-auto p-6 md:p-10">
+          <div className="grid md:grid-cols-2 gap-16 items-start ">
+            { }
+            <div className="bg-gray-50 rounded-lg p-8  h-full ">
+              <h2 className="text-3xl font-bold text-indigo-900 mb-6">Get in Touch</h2>
+              <p className="text-gray-600 mb-6 text-sm">
+                Feel free to contact us, and we will get back to you as soon as possible.
+              </p>
 
               <div className="space-y-4">
                 <input
@@ -61,22 +73,25 @@ const FooterTop = () => {
               </div>
             </div>
 
+            {/* Contact Info and Incentives Section */}
             <div className="space-y-10">
-              <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className=" rounded-lg p-8 ">
                 <h3 className="text-xl font-semibold text-indigo-900 mb-6">Contact Information</h3>
 
                 <div className="space-y-6">
+                  {/* Location */}
                   <div className="flex items-start space-x-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-indigo-600" viewBox="0 0 64 64">
                       <path d="M32 0A24.032 24.032 0 0 0 8 24c0 17.23 22.36 38.81 23.31 39.72a.99.99 0 0 0 1.38 0C33.64 62.81 56 41.23 56 24A24.032 24.032 0 0 0 32 0zm0 35a11 11 0 1 1 11-11 11.007 11.007 0 0 1-11 11z" />
                     </svg>
                     <div>
                       <h4 className="font-semibold text-gray-900 text-sm mb-1">Our Location</h4>
-                      <p className="text-gray-600 text-sm">123 Business Street</p>
+                      <p className="text-gray-600 text-sm">123 Confectionary Avenue</p>
                       <p className="text-gray-600 text-sm">New York, NY 10001</p>
                     </div>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-start space-x-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-indigo-600" viewBox="0 0 513.64 513.64">
                       <path d="m499.66 376.96-71.68-71.68c-25.6-25.6-69.12-15.359-79.36 17.92-7.68 23.041-33.28 35.841-56.32 30.72-51.2-12.8-120.32-79.36-133.12-133.12-7.68-23.041 7.68-48.641 30.72-56.32 33.28-10.24 43.52-53.76 17.92-79.36l-71.68-71.68c-20.48-17.92-51.2-17.92-69.12 0L18.38 62.08c-48.64 51.2 5.12 186.88 125.44 307.2s256 176.641 307.2 125.44l48.64-48.64c17.921-20.48 17.921-51.2 0-69.12z" />
@@ -87,6 +102,7 @@ const FooterTop = () => {
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start space-x-4">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-indigo-600" viewBox="0 0 512 512">
                       <path d="M298.789 313.693c-12.738 8.492-27.534 12.981-42.789 12.981-15.254 0-30.05-4.489-42.788-12.981L3.409 173.82A76.269 76.269 0 0 1 0 171.403V400.6c0 26.278 21.325 47.133 47.133 47.133h417.733c26.278 0 47.133-21.325 47.133-47.133V171.402a75.21 75.21 0 0 1-3.416 2.422z" />
@@ -94,13 +110,14 @@ const FooterTop = () => {
                     </svg>
                     <div>
                       <h4 className="font-semibold text-gray-900 text-sm mb-1">Email Address</h4>
-                      <p className="text-gray-600 text-sm">contact@business.com</p>
+                      <p className="text-gray-600 text-sm">contact@confectionary.com</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-8 shadow-lg">
+              {/* Hours of Operation */}
+              <div className="bg-gradient-to-r from-white via-gray-200 to-gray-400 rounded-lg p-8 ">
                 <h3 className="text-xl font-semibold text-indigo-900 mb-6">Hours of Operation</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between">
@@ -117,11 +134,13 @@ const FooterTop = () => {
                   </div>
                 </div>
               </div>
+
+             
             </div>
           </div>
         </div>
-      </Container>
-    </>
+     
+    </div>
   );
 };
 

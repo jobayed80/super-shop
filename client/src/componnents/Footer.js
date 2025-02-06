@@ -1,31 +1,29 @@
 import React from "react";
-// import FooterTop from "./FooterTop";
 
 const Footer = () => {
   return (
-    <div className="">
-      {/* <FooterTop /> */}
-      <hr className="border-2"></hr>
-      <footer className="font-sans tracking-wide bg-gray-800 px-10 pt-12 pb-6 ">
-        <div className="flex flex-wrap justify-between gap-10 ">
+    <div className="bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800">
+     <hr className="border-t-2 border-transparent bg-gradient-to-r from-pink-300 via-yellow-300 to-teal-300 h-1" />
+
+      <footer className="font-sans tracking-wide px-10 pt-12 pb-6">
+        <div className="flex flex-wrap justify-between gap-10">
           {/* Company Info Section */}
-          <div className="max-w-md text-white">
-            <a href="javascript:void(0)">
-              {/* <img
-                src="https://img.freepik.com/free-vector/flat-design-food-twitter-header_23-2149180879.jpg?t=st=1738615641~exp=1738619241~hmac=3ed667e66217eca120421f1db0acb22fd3f5f4a6d027fa68570e6f5e6d434382&w=1380" // Replace with your actual logo URL
-                alt="logo"
-                className="w-36"
-              /> */}
+          <div className="max-w-md text-gray-700">
+            <a href="/" className="text-3xl font-semibold text-gray-200">
+              Sweet Delights Confectionery
             </a>
             <div className="mt-6">
-              <p className="text-gray-400 leading-relaxed text-sm">
-                Our company is dedicated to providing high-quality products and services that help you streamline your workflow. We specialize in creating intuitive user interfaces with the latest technologies.
+              <p className="text-gray-300 leading-relaxed text-sm">
+                At Sweet Delights, we specialize in creating the finest
+                handcrafted sweets and pastries. From decadent chocolates to
+                mouth-watering cakes, each product is made with love and the
+                finest ingredients. Join us for a delightful experience!
               </p>
             </div>
             <ul className="mt-10 flex space-x-5">
               {/* Social Media Icons */}
               <li>
-                <a href="javascript:void(0)">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="fill-blue-600 w-8 h-8"
@@ -36,7 +34,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8"
@@ -56,7 +54,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8"
@@ -90,7 +88,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)">
+                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8"
@@ -111,128 +109,106 @@ const Footer = () => {
 
           {/* Services Section */}
           <div className="max-lg:min-w-[140px]">
-            <h4 className="text-gray-800 font-semibold text-base relative max-sm:cursor-pointer">
-              Services
-            </h4>
-            <ul className="mt-6 space-y-4">
+            <h4 className="text-gray-200 font-semibold text-lg">Our Services</h4>
+            <ul className="mt-6 space-y-4 text-gray-300">
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/custom-cakes"
+                  className="hover:text-gray-500 text-sm"
                 >
-                  Web Development
+                  Custom Cakes
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/chocolates"
+                  className="hover:text-gray-500  text-sm"
                 >
-                  Mobile App Development
+                  Gourmet Chocolates
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/pastries"
+                  className="hover:text-gray-500  text-sm"
                 >
-                  UI/UX Design
+                  Fresh Pastries
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/event-catering"
+                  className="hover:text-gray-500 text-sm"
                 >
-                  Consulting
+                  Event Catering
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Company Info Section */}
+          {/* About Us Section */}
           <div className="max-lg:min-w-[140px]">
-            <h4 className="text-gray-800 font-semibold text-base relative max-sm:cursor-pointer">
-              Company
-            </h4>
-            <ul className="space-y-4 mt-6">
+            <h4 className="text-gray-200 font-semibold text-lg">About Us</h4>
+            <ul className="space-y-4 mt-6 text-gray-300">
               <li>
                 <a
-                  href="javascript:void(0)"
-                 className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/about-us"
+                  className="hover:text-gray-500  text-sm"
                 >
-                  About Us
+                  Our Story
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/team"
+                  className="hover:text-gray-500  text-sm"
+                >
+                  Meet The Team
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/careers"
+                  className="hover:text-gray-500  text-sm"
                 >
                   Careers
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/contact-us"
+                  className="hover:text-gray-500  text-sm"
                 >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="javascript:void(0)"
-                 className="hover:text-gray-500 text-gray-400 text-sm"
-                >
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
-                >
-                  Events
+                  Contact Us
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Additional Links */}
+          {/* Legal Section */}
           <div className="max-lg:min-w-[140px]">
-            <h4 className="text-gray-800 font-semibold text-base relative max-sm:cursor-pointer">
-              Additional
-            </h4>
-            <ul className="mt-6 space-y-4">
+            <h4 className="text-gray-200 font-semibold text-lg">Legal</h4>
+            <ul className="mt-6 space-y-4 text-gray-300">
               <li>
                 <a
-                  href="javascript:void(0)"
-                 className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/privacy-policy"
+                  className="hover:text-gray-500  text-sm"
                 >
                   Privacy Policy
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/terms"
+                  className="hover:text-gray-500  text-sm"
                 >
                   Terms & Conditions
                 </a>
               </li>
               <li>
                 <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
-                >
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a
-                  href="javascript:void(0)"
-                  className="hover:text-gray-500 text-gray-400 text-sm"
+                  href="/faq"
+                  className="hover:text-gray-500  text-sm"
                 >
                   FAQ
                 </a>
@@ -240,9 +216,10 @@ const Footer = () => {
             </ul>
           </div>
         </div>
+
         <div className="mt-16 py-6 border-t-2 border-gray-100">
-          <p className="text-center text-sm text-gray-500">
-            &copy; 2025 TrueStars. All rights reserved.
+          <p className="text-center text-sm text-gray-300">
+            &copy; 2025 Sweet Delights. All rights reserved.
           </p>
         </div>
       </footer>

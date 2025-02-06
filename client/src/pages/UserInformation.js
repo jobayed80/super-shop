@@ -291,32 +291,7 @@ const UserInformation = () => {
       checkSession();
     }, []); // Runs once when the component mounts
   
-    // Second useEffect: If email is not verified or user is not logged in, redirect to the login page
-    useEffect(() => {
-      if (error) {
-  
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-          allowOutsideClick: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-            navigate("/user-signin"); // Redirect to the login page if there's an error (not logged in or email not verified)
-  
-          }
-        });
-      }
-    }, [error, navigate]); // Runs when error changes
+    
 
     
 
