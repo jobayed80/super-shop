@@ -180,7 +180,7 @@ const TopProduct = () => {
             return (
               <FiStar
                 key={i}
-                className={ratingValue <= (product.rating || 0) ? "text-red-400" : "text-red-300"}
+                className={ratingValue <= (product.rating || 0) ? "text-green-600" : "text-green-300"}
                 size={20}
               />
             );
