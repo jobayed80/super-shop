@@ -13,6 +13,8 @@ import Cart from './pages/Cart';
 import SuccessPage from './componnents/StripePayment/SuccessPage';
 import CancelPage from './componnents/StripePayment/CancelPage';
 import UserInformation from './pages/UserInformation';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
 
 // import './index.css'
 
@@ -120,6 +122,8 @@ function App() {
             <Route path="/product-details/:id" element={<CartDetails />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/cancel" element={<CancelPage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
            
           </Routes>
         </div>

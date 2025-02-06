@@ -39,8 +39,8 @@ const Header = () => {
     { title: "Cart", link: "/cart" },
     { title: "Orders", link: "/orders" },
     { title: "My Account", link: "/user-signin" },
-    { title: "About Us", link: "/#" },
-    { title: "Contact Us", link: "/#" },
+    { title: "About Us", link: "/about" },
+    { title: "Contact Us", link: "/contact" },
 
     // { title: "Blog", link: "/blog" },
     // { title: "Sample", link: "/sample" },
@@ -237,7 +237,7 @@ const Header = () => {
                       <hr className="border-gray-400 mb-3" />
                       {/* Menu Items */}
                       <div className="space-y-2">
-                        <div className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm"><Link to={"/user-signin"}>Profile</Link></div>
+                        <div className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm"><Link to={"/user-information"}>Profile</Link></div>
                         <div className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm">Settings</div>
                         <div className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm">Customer</div>
                         <hr className="bg-red-200"></hr>

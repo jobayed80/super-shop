@@ -324,153 +324,161 @@ const Cart = () => {
 
 
     return (
-        <div className=" container flex flex-col lg:flex-row p-8 gap-10 max-w-screen-2xl mx-auto py-10 px-4 lg:px-10">
-            {/* Left Side: Cart Items */}
-            <div className="flex-1 bg-white shadow-xl rounded-2xl p-6 space-y-8 ">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2">
-                    Your Cart
-                </h2>
-                {cart.map((item) => (
-                    <div
-                        key={item.id}
-                        className="flex items-start justify-between p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105 space-x-6"
-                    >
-                        <div className="flex justify-center items-center cursor-pointer" onClick={() => openModal(item)}>
-                            <img
-                                src={item.image_url}
-                                alt={item.name}
-                                className="w-48 h-48 object-cover rounded-xl border-2 border-gray-300 shadow-md"
-                            />
-                        </div>
-                        <div className="flex-1 space-y-3">
-                            <h3 className="text-2xl font-semibold text-gray-800 hover:text-indigo-600 transition-colors duration-200">
-                                {item.name}
-                            </h3>
-                            <h1 className="text-gray-600 text-sm">Category: {item.category}</h1>
-                            <p className="text-gray-600 text-sm">Price: ${item.price}</p>
-                            <p className="text-gray-600 text-sm">Weight: {item.weight}</p>
-                            <p className="text-gray-600 text-sm">Unit: {item.unit}</p>
-                            {/* <p className="text-gray-600 text-sm">Build date: {item.buildDate}</p>
+
+        <div className="bg-gradient-to-r from-white via-gray-200 to-gray-400">
+            <div className=" container flex flex-col lg:flex-row p-8 gap-10 max-w-screen-2xl mx-auto py-10 px-4 lg:px-10 mt-20">
+                {/* Left Side: Cart Items */}
+                <div className="flex-1 bg-white shadow-xl rounded-2xl p-6 space-y-8 ">
+                    <h2 className="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2">
+                        Your Cart
+                    </h2>
+                    {cart.map((item) => (
+                        <div
+                            key={item.id}
+                            className="flex items-start justify-between p-6 bg-gray-100 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:scale-105 space-x-6"
+                        >
+                            <div className="flex justify-center items-center cursor-pointer" onClick={() => openModal(item)}>
+                                <img
+                                    src={item.image_url}
+                                    alt={item.name}
+                                    className="w-48 h-48 object-cover rounded-xl border-2 border-gray-300 shadow-md"
+                                />
+                            </div>
+                            <div className="flex-1 space-y-3">
+                                <h3 className="text-2xl font-semibold text-gray-800 hover:text-indigo-600 transition-colors duration-200">
+                                    {item.name}
+                                </h3>
+                                <h1 className="text-gray-600 text-sm">Category: {item.category}</h1>
+                                <p className="text-gray-600 text-sm">Price: ${item.price}</p>
+                                <p className="text-gray-600 text-sm">Weight: {item.weight}</p>
+                                <p className="text-gray-600 text-sm">Unit: {item.unit}</p>
+                                {/* <p className="text-gray-600 text-sm">Build date: {item.buildDate}</p>
                             <p className="text-gray-600 text-sm">Expire date: {item.expireDate}</p> */}
 
-                            <div className="flex items-center text-gray-600">
-                                <FaStar className="text-yellow-500 mr-2" />
-                                <span>{item.reviews || 0} Reviews</span>
-                            </div>
+                                <div className="flex items-center text-gray-600">
+                                    <FaStar className="text-yellow-500 mr-2" />
+                                    <FaStar className="text-yellow-500 mr-2" />
+                                    <FaStar className="text-yellow-500 mr-2" />
+                                    <FaStar className="text-yellow-500 mr-2" />
 
-                            {/* Stock Status */}
-                            <div className={`text-sm ${item.stock > 0 ? 'text-green-600' : 'text-red-600'} font-semibold`}>
-                                {item.stock > 0 ? `${item.stock} in stock` : 'Out of Stock'}
+                                    {/* <span>{item.reviews || 0} Reviews</span> */}
+                                </div>
 
-                            </div>
-                            {/* <p className="text-gray-700 text-sm">{item.description}</p>
+                                {/* Stock Status */}
+                                <div className={`text-sm ${item.stock > 0 ? 'text-green-600' : 'text-red-600'} font-semibold`}>
+                                    {item.stock > 0 ? `${item.stock} in stock` : 'Out of Stock'}
+
+                                </div>
+                                {/* <p className="text-gray-700 text-sm">{item.description}</p>
                             <p className="text-gray-700 text-sm">{item.ingredients}</p> */}
 
-                        </div>
-                        <div className="flex flex-col items-center space-y-4">
-                            <div className="flex items-center space-x-3">
+                            </div>
+                            <div className="flex flex-col items-center space-y-4">
+                                <div className="flex items-center space-x-3">
+                                    <button
+                                        onClick={() => updateQuantity(item.id, -1)}
+                                        className="px-4 py-2 bg-red-500 text-white rounded-full transition-colors duration-200 hover:bg-red-600"
+                                    >
+                                        -
+                                    </button>
+                                    <span className="text-xl">{item.quantity}</span>
+                                    <button
+                                        onClick={() => updateQuantity(item.id, 1)}
+                                        className="px-4 py-2 bg-green-500 text-white rounded-full transition-colors duration-200 hover:bg-green-600"
+                                    >
+                                        +
+                                    </button>
+                                </div>
                                 <button
-                                    onClick={() => updateQuantity(item.id, -1)}
-                                    className="px-4 py-2 bg-red-500 text-white rounded-full transition-colors duration-200 hover:bg-red-600"
+                                    onClick={() => removeItem(item.id)}
+                                    className="mt-4 p-3 text-red-500 hover:text-red-600"
                                 >
-                                    -
-                                </button>
-                                <span className="text-xl">{item.quantity}</span>
-                                <button
-                                    onClick={() => updateQuantity(item.id, 1)}
-                                    className="px-4 py-2 bg-green-500 text-white rounded-full transition-colors duration-200 hover:bg-green-600"
-                                >
-                                    +
+                                    <HiTrash size={24} />
                                 </button>
                             </div>
-                            <button
-                                onClick={() => removeItem(item.id)}
-                                className="mt-4 p-3 text-red-500 hover:text-red-600"
-                            >
-                                <HiTrash size={24} />
-                            </button>
                         </div>
+                    ))}
+                </div>
+
+                {/* Right Side: Summary and Payment */}
+                <div className="flex-1 bg-white shadow-xl rounded-2xl p-6 space-y-6">
+                    {/* Title */}
+                    <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b-4 border-blue-600 pb-2">
+                        Order Summary
+                    </h2>
+
+                    {/* Order Details */}
+                    <div className="space-y-4">
+                        <p className="flex justify-between text-md md:text-lg text-gray-700">
+                            Subtotal: <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                        </p>
+                        <p className="flex justify-between text-md md:text-lg text-gray-700">
+                            Discount: <span className="font-semibold text-red-500">-${discount.toFixed(2)}</span>
+                        </p>
+                        <p className="flex justify-between text-md md:text-lg text-gray-700">
+                            Tax: <span className="font-semibold text-green-500">+${tax.toFixed(2)}</span>
+                        </p>
                     </div>
-                ))}
-            </div>
 
-            {/* Right Side: Summary and Payment */}
-            <div className="flex-1 bg-white shadow-xl rounded-2xl p-6 space-y-6">
-                {/* Title */}
-                <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b-4 border-blue-600 pb-2">
-                    Order Summary
-                </h2>
+                    <hr className="my-4 border-gray-300" />
 
-                {/* Order Details */}
-                <div className="space-y-4">
-                    <p className="flex justify-between text-md md:text-lg text-gray-700">
-                        Subtotal: <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                    {/* Total */}
+                    <p className="flex justify-between text-lg md:text-xl font-bold text-gray-900">
+                        Total: <span>${total.toFixed(2)}</span>
                     </p>
-                    <p className="flex justify-between text-md md:text-lg text-gray-700">
-                        Discount: <span className="font-semibold text-red-500">-${discount.toFixed(2)}</span>
-                    </p>
-                    <p className="flex justify-between text-md md:text-lg text-gray-700">
-                        Tax: <span className="font-semibold text-green-500">+${tax.toFixed(2)}</span>
+                    <hr className="my-4 border-gray-300" />
+
+                    {/* Payment Method */}
+                    <div className="space-y-6">
+
+                        <button
+                            onClick={handlePayment}
+                            className="w-full mt-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-semibold transition-transform transform hover:scale-105 hover:shadow-lg duration-200"
+                        >
+                            Proceed to Payment
+                        </button>
+                    </div>
+
+                    {/* Help Link */}
+                    <p className="text-sm text-gray-500 mt-6">
+                        Need help? <a href="/help" className="text-blue-600 font-semibold hover:underline">Contact Support</a>
                     </p>
                 </div>
 
-                <hr className="my-4 border-gray-300" />
 
-                {/* Total */}
-                <p className="flex justify-between text-lg md:text-xl font-bold text-gray-900">
-                    Total: <span>${total.toFixed(2)}</span>
-                </p>
-                <hr className="my-4 border-gray-300" />
-
-                {/* Payment Method */}
-                <div className="space-y-6">
-
-                    <button
-                        onClick={handlePayment}
-                        className="w-full mt-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-semibold transition-transform transform hover:scale-105 hover:shadow-lg duration-200"
-                    >
-                        Proceed to Payment
-                    </button>
-                </div>
-
-                {/* Help Link */}
-                <p className="text-sm text-gray-500 mt-6">
-                    Need help? <a href="/help" className="text-blue-600 font-semibold hover:underline">Contact Support</a>
-                </p>
-            </div>
-
-
-            {/* Modal: Product Details */}
-            {isModalOpen && (
-                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 z-50 flex justify-center items-center">
-                    <div className="bg-white p-8 rounded-xl max-w-4xl w-full space-y-6 shadow-xl">
-                        <div className="flex justify-between items-center">
-                            <h3 className="text-2xl font-semibold">{selectedProduct?.name}</h3>
-                            <button onClick={closeModal} className="text-xl text-red-500">X</button>
-                        </div>
-                        <img
-                            src={selectedProduct?.image_url}
-                            alt={selectedProduct?.name}
-                            className="w-full h-96 object-cover rounded-xl border-2 border-gray-300 shadow-md"
-                        />
-                        <div className="space-y-4">
-                            <p><strong>Category:</strong> {selectedProduct?.category}</p>
-                            <p><strong>Price:</strong> ${selectedProduct?.price}</p>
-                            <p><strong>Weight:</strong> {selectedProduct?.weight}</p>
-                            <p><strong>Unit:</strong> {selectedProduct?.unit}</p>
-                            <p><strong>Build date:</strong> {selectedProduct?.buildDate}</p>
-                            <p><strong>Expire date:</strong> {selectedProduct?.expireDate}</p>
-                            <p><strong>Description:</strong> {selectedProduct?.description}</p>
-                            <p><strong>Ingredients:</strong> {selectedProduct?.ingredients}</p>
-                            <div className="flex items-center text-gray-600">
-                                <FaStar className="text-yellow-500 mr-2" />
-                                <span>{selectedProduct?.reviews || 0} Reviews</span>
+                {/* Modal: Product Details */}
+                {isModalOpen && (
+                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 z-50 flex justify-center items-center">
+                        <div className="bg-white p-8 rounded-xl max-w-4xl w-full space-y-6 shadow-xl">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-2xl font-semibold">{selectedProduct?.name}</h3>
+                                <button onClick={closeModal} className="text-xl text-red-500">X</button>
+                            </div>
+                            <img
+                                src={selectedProduct?.image_url}
+                                alt={selectedProduct?.name}
+                                className="w-full h-96 object-cover rounded-xl border-2 border-gray-300 shadow-md"
+                            />
+                            <div className="space-y-4">
+                                <p><strong>Category:</strong> {selectedProduct?.category}</p>
+                                <p><strong>Price:</strong> ${selectedProduct?.price}</p>
+                                <p><strong>Weight:</strong> {selectedProduct?.weight}</p>
+                                <p><strong>Unit:</strong> {selectedProduct?.unit}</p>
+                                <p><strong>Build date:</strong> {selectedProduct?.buildDate}</p>
+                                <p><strong>Expire date:</strong> {selectedProduct?.expireDate}</p>
+                                <p><strong>Description:</strong> {selectedProduct?.description}</p>
+                                <p><strong>Ingredients:</strong> {selectedProduct?.ingredients}</p>
+                                <div className="flex items-center text-gray-600">
+                                    <FaStar className="text-yellow-500 mr-2" />
+                                    <span>{selectedProduct?.reviews || 0} Reviews</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
+
     )
 }
 
