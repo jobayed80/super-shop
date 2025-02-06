@@ -6,8 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { User, ShoppingCart } from "lucide-react";
 import { supabase } from "../lib/createClient";
 import { FiHome, FiShoppingCart, FiInfo, FiPhone } from "react-icons/fi"; // Import the icons
+import { Modal, Button } from 'antd';
 
-const Header = () => {
+const Header = ({ isAdmin, setIsAdmin }) => {
+
+
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -67,6 +70,66 @@ const Header = () => {
     }
   };
 
+
+  // Handle admin login
+  // const handleAdminLogin = () => {
+  //   setIsAdmin(true);
+  //   localStorage.setItem('isAdmin', 'true'); // Store admin state
+  //   navigate('/admin');  // Redirect to admin panel
+  // };
+
+
+
+  const [modal2Open, setModal2Open] = useState(false);
+  const [emailAdmin, setEmailAdmin] = useState("")
+  const [passAdmin, setAdminPass] = useState("")
+  const [erroMsg, setErrorMsg] = useState("")
+
+  const handleAdminLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // login('/admin')
+    setErrorMsg("");
+
+    try {
+      // Query the `users` table to check if name and number exist
+      const { data, error } = await supabase
+        .from("admin")
+        .select("*")
+        .eq("email", emailAdmin)
+        .eq("password", passAdmin)
+        .single();
+
+      if (error || !data) {
+        // If the query fails, show a specific error based on the conditions
+        if (error?.message.includes("No rows found") || !data) {
+          // Case: Email and password don't match
+          setErrorMsg("Invalid email or password. Please try again.");
+        } else {
+          // Any other Supabase-specific error
+          setErrorMsg(`Unexpected error: ${error.message}`);
+        }
+      } else {
+        // Successful login, redirect to the admin page
+        localStorage.setItem("adminEmail", emailAdmin);
+        localStorage.setItem("adminPassword", passAdmin)
+        setIsAdmin(true);
+        localStorage.setItem('isAdmin', 'true'); // Store admin state
+        navigate('/admin');  // Redirect to admin panel
+      }
+    } catch (err) {
+      // If a general error occurs, show a notification
+      if (err.message.includes("network")) {
+        setErrorMsg("Network issue detected. Please check your connection.");
+      } else {
+        setErrorMsg("An unexpected error occurred. Please contact the authorities.");
+      }
+      setErrorMsg("An unexpected error occurred. Please try again.");
+    }
+  };
+
+
+
+
   return (
     <div>
       {/* Navbar */}
@@ -119,6 +182,14 @@ const Header = () => {
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
             />
             <ShoppingCart className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer" />
+            <header>
+              <nav>
+                {/* Show Admin button only if NOT an admin */}
+                {!isAdmin && <button onClick={() => setModal2Open(true)}>Admin</button>}
+
+
+              </nav>
+            </header>
           </div>
 
           <div className="flex items-center space-x-4 ">
@@ -215,6 +286,90 @@ const Header = () => {
           )}
         </AnimatePresence>
       </nav>
+
+
+
+      {/* Admin Login Modal */}
+      <Modal
+        title={
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold text-center"
+          >
+            Admin Panel
+          </motion.div>
+        }
+        centered
+        open={modal2Open}
+        onOk={() => setModal2Open(false)}
+        onCancel={() => setModal2Open(false)}
+        maskClosable={false}
+        keyboard={false}
+        footer={null}
+        bodyStyle={{ padding: "24px", borderRadius: "8px" }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="text-center mb-6">
+            <p className="text-lg font-semibold text-gray-600">Welcome to the Admin Panel</p>
+            <p className="text-sm text-gray-500">Please log in with your credentials to access the dashboard.</p>
+          </div>
+
+          <form onSubmit={handleAdminLogin} className="space-y-4 max-w-md mx-auto">
+            {erroMsg && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-red-500 text-sm font-medium text-center"
+              >
+                {erroMsg}
+              </motion.p>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-gray-700">Email Address</label>
+              <input
+                id="email"
+                type="text"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your email"
+                value={emailAdmin}
+                onChange={(e) => setEmailAdmin(e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium text-gray-700">Password</label>
+              <input
+                id="password"
+                type="password"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your password"
+                value={passAdmin}
+                onChange={(e) => setAdminPass(e.target.value)}
+              />
+            </div>
+
+            <Button
+              type="primary"
+              className="w-full py-3 text-lg font-semibold bg-blue-500 border-none hover:bg-blue-600 rounded-lg"
+              onClick={handleAdminLogin}
+            >
+              Login
+            </Button>
+          </form>
+        </motion.div>
+      </Modal>
+
+
+
     </div>
   );
 };
