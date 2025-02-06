@@ -41,13 +41,13 @@ const CartDetails = () => {
 
     const handleNext = () => {
         setCurrentIndex((prevIndex) =>
-            prevIndex + 4 >= relatedProducts.length ? 0 : prevIndex + 4
+            prevIndex + 2 >= relatedProducts.length ? 0 : prevIndex + 2
         );
     };
 
     const handlePrevious = () => {
         setCurrentIndex((prevIndex) =>
-            prevIndex - 4 < 0 ? relatedProducts.length - 4 : prevIndex - 4
+            prevIndex - 2 < 0 ? relatedProducts.length - 2 : prevIndex - 2
         );
     };
 
@@ -188,13 +188,13 @@ const CartDetails = () => {
     if (!product) return <p>Loading...</p>;
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 mt-20">
+        <div className="min-h-screen bg-gradient-to-r from-white via-gray-200 to-gray-400 pt-24">
 
             {contextHolder} {/* Add this line to render the notification context */}
 
 
             {/* Product Details */}
-            <div className="font-[sans-serif] p-4 bg-white rounded-lg shadow-lg max-w-5xl mx-auto">
+            <div className="font-[sans-serif] p-4  rounded-lg shadow-sm max-w-4xl mx-auto">
                 <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
                     {/* Product Image Section */}
                     <div className="w-full lg:sticky top-0 lg:col-span-3">
@@ -258,7 +258,7 @@ const CartDetails = () => {
                         {/* Add to Cart Button */}
                         <div className="mt-6">
                             <button
-                                className="w-full px-4 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-200"
+                                className="w-full px-4 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-200"
                                 onClick={() => handleAddToCart(product)}
                             >
                                 Add to Cart
@@ -268,8 +268,9 @@ const CartDetails = () => {
                 </div>
             </div>
 
+
             {/* Why Buy From Us? Section */}
-            <div className="mt-8 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto">
+            <div className="mt-8  p-6 rounded-lg shadow-sm container mx-auto">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Why Buy From Us?</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="text-center">
@@ -293,18 +294,18 @@ const CartDetails = () => {
 
             {/* Related Products Section */}
             {/* Related Products Section */}
-            <div className="mt-12 max-w-5xl mx-auto relative">
+            <div className="mt-12 mx-auto relative container">
                 <h3 className="text-xl font-bold text-gray-800 mb-6">Related Products</h3>
 
                 {/* Navigation Buttons */}
                 <button
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300 z-10"
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2  p-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300 z-10"
                     onClick={handlePrevious}
                 >
                     ←
                 </button>
                 <button
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300 z-10"
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2  p-2 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300 z-10"
                     onClick={handleNext}
                 >
                     →
@@ -317,7 +318,7 @@ const CartDetails = () => {
                         .map((product) => (
                             <div
                                 key={product.id}
-                                className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group"
+                                className=" p-4 rounded-lg shadow-lg hover:shadow-lg transition-all duration-300 group"
                             >
                                 {/* Product Image */}
                                 <div className="relative overflow-hidden rounded-lg">
@@ -342,12 +343,12 @@ const CartDetails = () => {
 
                                     {/* Rating and Reviews */}
                                     <div className="flex items-center space-x-1 mt-2">
-                                        <FaStar className="text-yellow-500" />
-                                        <FaStar className="text-yellow-500" />
-                                        <FaStar className="text-yellow-500" />
-                                        <FaStar className="text-yellow-500" />
+                                        <FaStar className="text-green-500" />
+                                        <FaStar className="text-green-500" />
+                                        <FaStar className="text-green-500" />
+                                        <FaStar className="text-green-500" />
                                         <FaStar className="text-gray-300" />
-                                        <p className="text-sm text-gray-600 ml-2">(150 reviews)</p>
+                                        <p className="text-sm text-green-600 ml-2">(150 reviews)</p>
                                     </div>
 
                                     {/* Price */}
@@ -359,16 +360,12 @@ const CartDetails = () => {
                                         <p className="text-sm text-green-600 font-semibold">Save 20%</p>
                                     </div>
 
-                                    {/* Product Description */}
-                                    <p className="text-sm text-gray-600 mt-2">
-                                        {product.description || "Pure, raw honey sourced from organic farms."}
-                                    </p>
-
+                            
 
 
                                     {/* Add to Cart Button */}
                                     <button
-                                        className="w-full mt-4 px-4 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-200"
+                                        className="w-full mt-4 px-4 py-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-200"
                                         onClick={() => handleAddToCart(product)}
                                     >
                                         Add to Cart
@@ -381,19 +378,19 @@ const CartDetails = () => {
 
 
             {/* Comment Section */}
-            <div className="mt-8 p-6 bg-white shadow-lg rounded-lg max-w-5xl mx-auto">
+            <div className="mt-8 p-6 bg-gradient-to-r from-white via-gray-200 to-gray-300 shadow-sm rounded-lg container mx-auto">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-800">Customer Reviews ({totalComments})</h3>
 
                 {/* Comment Input */}
-                <div className="mt-4 flex items-start space-x-4">
+                <div className="mt-4 flex items-start space-x-4 ">
                     <img
                         src="https://cdn.pixabay.com/photo/2015/04/23/22/00/new-year-background-736885_1280.jpg"
                         alt="User"
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-12 h-12 rounded-full object-cover bg-green-800"
                     />
                     <div className="flex-1">
                         <textarea
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                            className="w-full bg-gradient-to-r from-white via-gray-200 p-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
                             placeholder="Add a public comment..."
                             rows="3"
                             value={newComment}
@@ -410,7 +407,7 @@ const CartDetails = () => {
                                 />
                             </label>
                             <button
-                                className="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 disabled:opacity-50"
+                                className="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 disabled:opacity-50"
                                 disabled={!newComment.trim()}
                                 onClick={handleAddComment}
                             >
@@ -425,7 +422,7 @@ const CartDetails = () => {
                     {comments.map((comment) => (
                         <div
                             key={comment.id}
-                            className="flex flex-col md:flex-row items-start space-x-4 p-4 bg-white shadow-md rounded-lg hover:shadow-xl transition-all duration-300"
+                            className="flex flex-col md:flex-row items-start space-x-4 p-4  shadow-md rounded-lg hover:shadow-xl transition-all duration-300"
                         >
                             {/* Profile Picture */}
                             <img
@@ -462,32 +459,7 @@ const CartDetails = () => {
                 </div>
             </div>
 
-            {/* Footer Section */}
-            <div className="mt-12 bg-gray-800 text-white py-8">
-                <div className="max-w-5xl mx-auto px-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-                        <div>
-                            <h3 className="text-lg font-bold mb-4">About Us</h3>
-                            <p className="text-sm text-gray-400">
-                                We are committed to providing the best organic products for a healthier lifestyle.
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-                            <ul className="text-sm text-gray-400 space-y-2">
-                                <li><a href="#" className="hover:text-white">Home</a></li>
-                                <li><a href="#" className="hover:text-white">Shop</a></li>
-                                <li><a href="#" className="hover:text-white">Contact</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-                            <p className="text-sm text-gray-400">Email: support@organicstore.com</p>
-                            <p className="text-sm text-gray-400">Phone: +1 (123) 456-7890</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     );
 };

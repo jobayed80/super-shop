@@ -121,7 +121,7 @@ const TopProduct = () => {
         {/* Main Title with Gradient Text */}
         <h1 className="text-4xl font-extrabold mb-4"
         style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #f8b400', display: 'inline-block', paddingBottom: '4px' }}>
-          A Brush of Perfection
+         Top Sells Products
         </h1>
 
         {/* Subtitle or Tagline */}

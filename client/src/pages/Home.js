@@ -3,9 +3,11 @@ import BannerCategories from "../componnents/BannerCategories";
 import Blog from "../componnents/Blog";
 import FooterTop from "../componnents/FooterTop";
 import TopProduct from "./TopProduct";
-import Carousel from "../componnents/Carousel";
+import Carousel from "../componnents/CarouselCompany";
 import HeaderTopNew from "../componnents/HeaderTopNew";
 import HeaderTop from "../componnents/HeaderTop";
+import PopularCategories from "./PopularCategories";
+import CarouselCompany from "../componnents/CarouselCompany";
 
 
 const Home: React.FC = () => {
@@ -24,6 +26,8 @@ const Home: React.FC = () => {
       
       {/* <Carousel></Carousel> */}
       <HeaderTop></HeaderTop>
+      <CarouselCompany></CarouselCompany>
+      <PopularCategories></PopularCategories>
       <TopProduct></TopProduct>
       <BannerCategories></BannerCategories>
       <Blog></Blog>

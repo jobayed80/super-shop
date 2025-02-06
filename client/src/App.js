@@ -16,6 +16,7 @@ import UserInformation from './pages/UserInformation';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 import ScrollToTop from './componnents/ScrollToTop';
+import PopularCategoriesDetails from './pages/PopularCategoriesDetails';
 
 // import './index.css'
 
@@ -113,7 +114,7 @@ function App() {
     
     <Router>
       
-      <div className="flex flex-col min-h-screen">
+      <div className="">
         <Header />
         <div className="flex-grow">
           <Routes>
@@ -128,6 +129,7 @@ function App() {
             <Route path="/cancel" element={<CancelPage />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<ContactUs />} />
+            <Route path="/category/:categoryName" element={<PopularCategoriesDetails />} />
            
           </Routes>
         </div>
