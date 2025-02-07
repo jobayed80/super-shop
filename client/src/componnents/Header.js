@@ -142,14 +142,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
 
           {/* Mobile Menu Icon */}
           <div className="md:hidden flex items-center justify-center gap-3">
-<<<<<<< HEAD
           <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 " src={Adminlogo}></img></button>
-=======
-  					{ <User
-              onClick={toggleDropdown(true)}
-              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
-            /> 
->>>>>>> dcb4b9878eb10fd435a8640deaebb1c9d2c5d23f
             <FiMenu
               onClick={handleMenuToggle}
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
@@ -180,7 +173,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
             <ShoppingCart className="w-6 h-6 text-green-600 hover:text-gray-900 cursor-pointer" />
                 {/* Show Admin button only if NOT an admin */}
                 {/* {!isAdmin && <button onClick={() => setModal2Open(true)}><Adminlogo></Adminlogo></button>} */}
-                <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 text-green-600" src={Adminlogo}></img></button>
+                <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 " src={Adminlogo}></img></button>
           </div>
 
           {/* <div className="flex items-center space-x-4 ">        

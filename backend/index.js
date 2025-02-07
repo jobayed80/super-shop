@@ -207,6 +207,139 @@ app.post("/create-checkout-session", async (req, res) => {
 
 
 
+app.get('/api/orders', async (req, res) => {
+  try {
+      const payments = await stripe.checkout.sessions.list({ limit: 100 });
+
+      const orders = await Promise.all(
+          payments.data.map(async (session) => {
+              const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
+
+              // Fetch customer email
+              let customerEmail = session.customer_email;
+              if (!customerEmail && session.customer) {
+                  const customer = await stripe.customers.retrieve(session.customer);
+                  customerEmail = customer.email || 'Unknown';
+              }
+
+              // Retrieve payment details safely
+              let transactionId = 'N/A';
+              let paymentMethod = 'Unknown';
+              
+              if (session.payment_intent) {
+                  try {
+                      const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
+                      transactionId = paymentIntent.id;
+                      paymentMethod = paymentIntent.payment_method_types[0] || 'Unknown';
+                  } catch (err) {
+                      console.warn(`Failed to retrieve payment intent for session ${session.id}:`, err.message);
+                  }
+              }
+
+              const createdAt = new Date(session.created * 1000).toLocaleString(); // Convert timestamp to readable format
+
+              return {
+                  id: session.id,
+                  userEmail: customerEmail,
+                  transactionId,
+                  paymentMethod,
+                  createdAt,
+                  totalAmount: session.amount_total / 100,
+                  currency: session.currency,
+                  products: lineItems.data.map(item => ({
+                      name: item.description,
+                      quantity: item.quantity,
+                      amount: item.amount_total / 100,
+                      image: item.price?.product?.images?.[0] || null,
+                  })),
+              };
+          })
+      );
+
+      res.json(orders);
+  } catch (error) {
+      console.error('Error fetching orders:', error);
+      res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
+
+
+app.get('/api/total-orders', async (req, res) => {
+  try {
+    const payments = await stripe.checkout.sessions.list({ limit: 100 });
+    res.json({ totalOrders: payments.data.length });
+  } catch (error) {
+    console.error('Error fetching total orders:', error);
+    res.status(500).json({ error: 'Failed to fetch total orders' });
+  }
+});
+
+app.get('/api/pending-orders', async (req, res) => {
+  try {
+    const payments = await stripe.checkout.sessions.list({ limit: 100 });
+
+    // Filter orders where payment status is 'open' or 'unpaid'
+    const pendingOrders = payments.data.filter(session => session.payment_status !== 'paid');
+
+    res.json({ pendingOrders: pendingOrders.length });
+  } catch (error) {
+    console.error('Error fetching pending orders:', error);
+    res.status(500).json({ error: 'Failed to fetch pending orders' });
+  }
+});
+
+app.get("/total-sales", async (req, res) => {
+  try {
+    const payments = await stripe.checkout.sessions.list({ limit: 100 });
+
+    // Calculate total sales (only for successful payments)
+    const totalSales = payments.data
+      .filter(session => session.payment_status === "Card")
+      .reduce((acc, session) => acc + session.amount_total, 0);
+
+    res.json({ totalSales: totalSales / 100 }); // Convert from cents to dollars (or appropriate currency)
+  } catch (error) {
+    console.error("Error fetching total sales:", error);
+    res.status(500).json({ error: "Failed to fetch total sales" });
+  }
+});
+
+// Endpoint to fetch orders by email
+// Endpoint to search Stripe transactions by email
+app.get('/api/transactions', async (req, res) => {
+  const { email } = req.query;
+  console.log('Received email:', email);  // Log the email to check if it's passed correctly
+
+  if (!email) {
+    return res.status(400).send('Email is required');
+  }
+
+  try {
+    const charges = await stripe.charges.list({
+      customer: email, // Assuming you want to find charges associated with the email
+      limit: 10, // Limit to 10 results for now
+    });
+
+    const transactions = charges.data.map((charge) => ({
+      id: charge.id,
+      amount: charge.amount,
+      currency: charge.currency,
+      created: new Date(charge.created * 1000),
+    }));
+
+    return res.json({ transactions });
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    return res.status(500).send('Error fetching transactions');
+  }
+});
+
+
+
+
+
+
+
 
 
 // Simple API endpoint
