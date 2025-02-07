@@ -141,10 +141,10 @@ const Header = ({ isAdmin, setIsAdmin }) => {
 
           {/* Mobile Menu Icon */}
           <div className="md:hidden flex items-center justify-center gap-3">
-            {/* <User
-              onClick={toggleDropdown}
+  					{ <User
+              onClick={toggleDropdown(true)}
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
-            /> */}
+            /> 
             <FiMenu
               onClick={handleMenuToggle}
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
