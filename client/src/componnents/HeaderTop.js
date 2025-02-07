@@ -15,9 +15,9 @@ const HeaderTop = () => {
                         <h1 className="text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
                             Sweeten Your Day <br />
                             With Our <br />
-                            <span className="text-pink-500">Delicious Treats!</span>
+                            <span className="text-green-600">Delicious Treats!</span>
                         </h1>
-                        <button className="mt-6 px-8 py-3 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition duration-300 font-semibold">
+                        <button className="mt-6 px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-pink-600 transition duration-300 font-semibold">
                             <Link to={"/products"}>Shop Now</Link>
                         </button>
                         <p className="mt-6 text-gray-600 text-lg">
@@ -34,7 +34,7 @@ const HeaderTop = () => {
                     </div>
 
                 </div>
-            </div>
+            </div>  <hr></hr>
         </>
     );
 };

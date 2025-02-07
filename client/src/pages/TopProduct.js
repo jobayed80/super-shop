@@ -119,8 +119,8 @@ const TopProduct = () => {
       {/* Product Grid */}
       <div className="flex flex-col items-center justify-center p-8">
         {/* Main Title with Gradient Text */}
-        <h1 className="text-4xl font-extrabold mb-4"
-        style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #f8b400', display: 'inline-block', paddingBottom: '4px' }}>
+        <h1 className="text-4xl font-extrabold text-black mb-4 border-b-4 border-green-500 inline-block pb-2"
+        style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #37A168', display: 'inline-block', paddingBottom: '4px' }}>
          Top Sells Products
         </h1>
 

@@ -341,10 +341,11 @@ const Cart = () => {
                                 <img
                                     src={item.image_url}
                                     alt={item.name}
-                                    className="w-48 h-48 object-cover rounded-xl border-2 border-gray-300 shadow-md"
+                                    className="w-24 h-24 sm:w-48 sm:h-48 object-cover rounded-xl border-2 border-gray-300 shadow-md"
                                 />
                             </div>
-                            <div className="flex-1 space-y-3">
+
+                            <div onClick={() => openModal(item)} className="flex-1 space-y-3">
                                 <h3 className="text-2xl font-semibold text-gray-800 hover:text-indigo-600 transition-colors duration-200">
                                     {item.name}
                                 </h3>

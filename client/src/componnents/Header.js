@@ -7,6 +7,7 @@ import { User, ShoppingCart } from "lucide-react";
 import { supabase } from "../lib/createClient";
 import { FiHome, FiShoppingCart, FiInfo, FiPhone } from "react-icons/fi"; // Import the icons
 import { Modal, Button } from 'antd';
+import Adminlogo from '../assets/admin-logo.png';
 
 const Header = ({ isAdmin, setIsAdmin }) => {
 
@@ -136,15 +137,12 @@ const Header = ({ isAdmin, setIsAdmin }) => {
       <nav className="w-full bg-gradient-to-r from-white via-gray-500 to-gray-200 shadow-md p-8 fixed top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
-          <div class="text-xl font-bold text-gray-900 animate-bounce">Galaxy Shop</div>
+          <div class="text-xl font-bold text-gray-900 animate-bounce"><Link to={'/'}>Galaxy Shop</Link></div>
 
 
           {/* Mobile Menu Icon */}
           <div className="md:hidden flex items-center justify-center gap-3">
-            {/* <User
-              onClick={toggleDropdown}
-              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
-            /> */}
+          <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 " src={Adminlogo}></img></button>
             <FiMenu
               onClick={handleMenuToggle}
               className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
@@ -170,17 +168,12 @@ const Header = ({ isAdmin, setIsAdmin }) => {
           <div className="flex items-center space-x-4 hidden md:flex">
             <User
               onClick={toggleDropdown}
-              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
+              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer text-green-600"
             />
-            <ShoppingCart className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer" />
-            <header>
-              <nav>
+            <ShoppingCart className="w-6 h-6 text-green-600 hover:text-gray-900 cursor-pointer" />
                 {/* Show Admin button only if NOT an admin */}
-                {!isAdmin && <button onClick={() => setModal2Open(true)}>Admin</button>}
-
-
-              </nav>
-            </header>
+                {/* {!isAdmin && <button onClick={() => setModal2Open(true)}><Adminlogo></Adminlogo></button>} */}
+                <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 text-green-600" src={Adminlogo}></img></button>
           </div>
 
           {/* <div className="flex items-center space-x-4 ">        

@@ -11,7 +11,7 @@ const Blog = () => {
           <div className="container mx-auto text-center mb-12 text-black">
             <h2
               className="text-4xl font-extrabold mb-4"
-              style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #f8b400', display: 'inline-block', paddingBottom: '4px' }}
+              style={{ fontFamily: 'Cursive, sans-serif', borderBottom: '2px solid #37A168', display: 'inline-block', paddingBottom: '4px' }}
             >
               Our Sweet Stories
             </h2>
@@ -145,7 +145,7 @@ const Blog = () => {
             </p>
             <a
               href="/subscribe"
-              className="bg-red-400 text-black px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-300 transition-all"
+              className="bg-green-600 text-black px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-300 transition-all"
             >
               Subscribe Now
             </a>

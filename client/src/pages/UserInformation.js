@@ -299,7 +299,7 @@ const UserInformation = () => {
     
   return (
     <div>
-    <section className="min-h-screen flex items-center justify-center  bg-gradient-to-r from-white via-gray-200 to-gray-400 p-6  ">
+    <section className="min-h-screen flex items-center justify-center  bg-gradient-to-r from-white via-gray-200 to-gray-400 py-20  ">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}

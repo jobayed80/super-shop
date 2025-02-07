@@ -41,7 +41,7 @@ const FooterTop = () => {
           className="text-4xl font-extrabold text-black mb-2"
           style={{
             fontFamily: 'Cursive, sans-serif',
-            borderBottom: '2px solid #f8b400',
+            borderBottom: '2px solid #37A168',
             display: 'inline-block',
             paddingBottom: '4px',
           }}
@@ -98,7 +98,7 @@ const FooterTop = () => {
                 <div className="flex items-start space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 fill-indigo-600"
+                    className="w-6 h-6 fill-indigo-600 text-green-600"
                     viewBox="0 0 64 64"
                   >
                     <path d="M32 0A24.032 24.032 0 0 0 8 24c0 17.23 22.36 38.81 23.31 39.72a.99.99 0 0 0 1.38 0C33.64 62.81 56 41.23 56 24A24.032 24.032 0 0 0 32 0zm0 35a11 11 0 1 1 11-11 11.007 11.007 0 0 1-11 11z" />
