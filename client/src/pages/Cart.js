@@ -350,7 +350,7 @@ const Cart = () => {
                                     {item.name}
                                 </h3>
                                 <h1 className="text-gray-600 text-sm">Category: {item.category}</h1>
-                                <p className="text-gray-600 text-sm">Price: ${item.price}</p>
+                                <p className="text-gray-600 text-sm">Price: ৳{item.price}</p>
                                 <p className="text-gray-600 text-sm">Weight: {item.weight}</p>
                                 <p className="text-gray-600 text-sm">Unit: {item.unit}</p>
                                 {/* <p className="text-gray-600 text-sm">Build date: {item.buildDate}</p>
@@ -411,13 +411,13 @@ const Cart = () => {
                     {/* Order Details */}
                     <div className="space-y-4">
                         <p className="flex justify-between text-md md:text-lg text-gray-700">
-                            Subtotal: <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                            Subtotal: <span className="font-semibold">৳{subtotal.toFixed(2)}</span>
                         </p>
                         <p className="flex justify-between text-md md:text-lg text-gray-700">
-                            Discount: <span className="font-semibold text-red-500">-${discount.toFixed(2)}</span>
+                            Discount: <span className="font-semibold text-red-500">-৳{discount.toFixed(2)}</span>
                         </p>
                         <p className="flex justify-between text-md md:text-lg text-gray-700">
-                            Tax: <span className="font-semibold text-green-500">+${tax.toFixed(2)}</span>
+                            Tax: <span className="font-semibold text-green-500">+৳{tax.toFixed(2)}</span>
                         </p>
                     </div>
 
@@ -425,7 +425,7 @@ const Cart = () => {
 
                     {/* Total */}
                     <p className="flex justify-between text-lg md:text-xl font-bold text-gray-900">
-                        Total: <span>${total.toFixed(2)}</span>
+                        Total: <span>৳{total.toFixed(2)}</span>
                     </p>
                     <hr className="my-4 border-gray-300" />
 

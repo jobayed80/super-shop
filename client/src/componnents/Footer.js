@@ -1,6 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button, Modal } from 'antd';
+
+
+
+
 
 const Footer = () => {
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+
+  const [isModalOpenTerms, setIsModalOpenTerms] = useState(false);
+  const showModalTerms = () => {
+    setIsModalOpenTerms(true);
+  };
+
+  const handleOkTerms = () => {
+    setIsModalOpenTerms(false);
+  };
+
+  const handleCancelTerms = () => {
+    isModalOpenTerms(false);
+  };
+
+  
   return (
     <div className="bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800">
      <hr className="border-t-2 border-transparent bg-gradient-to-r from-pink-300 via-yellow-300 to-teal-300 h-1" />
@@ -10,11 +45,11 @@ const Footer = () => {
           {/* Company Info Section */}
           <div className="max-w-md text-gray-700">
             <a href="/" className="text-3xl font-semibold text-gray-200">
-              Sweet Delights Confectionery
+             Galaxy Super Shop
             </a>
             <div className="mt-6">
               <p className="text-gray-300 leading-relaxed text-sm">
-                At Sweet Delights, we specialize in creating the finest
+                At Galaxy Super shop, we specialize in creating the finest
                 handcrafted sweets and pastries. From decadent chocolates to
                 mouth-watering cakes, each product is made with love and the
                 finest ingredients. Join us for a delightful experience!
@@ -190,20 +225,22 @@ const Footer = () => {
             <h4 className="text-gray-200 font-semibold text-lg">Legal</h4>
             <ul className="mt-6 space-y-4 text-gray-300">
               <li>
-                <a
+                <p
                   href="/privacy-policy"
-                  className="hover:text-gray-500  text-sm"
+                  className="hover:text-gray-500 cursor-pointer text-sm"
+                  onClick={showModal}
                 >
                   Privacy Policy
-                </a>
+                </p>
               </li>
               <li>
-                <a
+                <p
                   href="/terms"
-                  className="hover:text-gray-500  text-sm"
+                  className="hover:text-gray-500 cursor-pointer text-sm"
+                  onClick={showModalTerms}
                 >
                   Terms & Conditions
-                </a>
+                </p>
               </li>
               <li>
                 <a
@@ -223,6 +260,102 @@ const Footer = () => {
           </p>
         </div>
       </footer>
+
+
+
+
+      <Modal title=" গোপনীয়তা নীতি দেখুন" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      
+        {/* Privacy Policy Content in Bangla */}
+        <div className="text-gray-700 space-y-4">
+          <p>
+            আমরা আপনার গোপনীয়তাকে শ্রদ্ধা করি এবং আপনার ব্যক্তিগত তথ্যের সুরক্ষার জন্য প্রতিশ্রুতিবদ্ধ। এই গোপনীয়তা নীতিতে, আমরা ব্যাখ্যা করব কীভাবে আমরা আপনার তথ্য সংগ্রহ, ব্যবহার এবং রক্ষা করি।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">১. তথ্য সংগ্রহ</h3>
+          <p>
+            আমাদের কনফেকশনারি ওয়েবসাইটে আপনি যখন নিবন্ধন করেন বা অর্ডার দেন, আমরা আপনার নাম, ফোন নম্বর, ইমেইল ঠিকানা এবং ঠিকানা সংগ্রহ করতে পারি।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">২. তথ্য ব্যবহারের উদ্দেশ্য</h3>
+          <ul className="list-disc pl-6">
+            <li>আপনার অর্ডার প্রক্রিয়া ও সরবরাহ নিশ্চিত করা।</li>
+            <li>সেবা ও গ্রাহক সহায়তা প্রদান করা।</li>
+            <li>আপনার মতামত ও প্রতিক্রিয়া সংগ্রহ করা।</li>
+          </ul>
+
+          <h3 className="font-semibold text-gray-900">৩. তথ্য সুরক্ষা</h3>
+          <p>
+            আপনার ব্যক্তিগত তথ্য সুরক্ষিত রাখতে আমরা উন্নত প্রযুক্তি ব্যবহার করি এবং কোনো তৃতীয় পক্ষের কাছে তা শেয়ার করা হয় না।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">৪. যোগাযোগ</h3>
+          <p>
+            যদি আপনার গোপনীয়তা নীতি সম্পর্কিত কোনো প্রশ্ন থাকে, দয়া করে আমাদের সাথে যোগাযোগ করুন: <strong>support@confectionery.com</strong>
+          </p>
+        </div>
+
+        {/* Close Button
+        <div className="text-right mt-4">
+          <Button
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+            onClick={() => setModalIsOpen(false)}
+          >
+            বন্ধ করুন
+          </Button>
+        </div> */}
+      </Modal>
+
+
+      <Modal title="  শর্তাবলী দেখুন " open={isModalOpenTerms} onOk={handleOkTerms} keyboard={true} width={900}>
+      
+        {/* Terms & Conditions in Bangla */}
+        <div className="text-gray-700 space-y-4">
+          <p>
+            আমাদের কনফেকশনারি ওয়েবসাইটে প্রবেশ ও আমাদের সেবা ব্যবহারের মাধ্যমে, আপনি নিম্নলিখিত শর্তাবলী মেনে নিতে সম্মত হচ্ছেন।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">১. পরিষেবার গ্রহণযোগ্যতা</h3>
+          <p>
+            আমাদের ওয়েবসাইট এবং পরিষেবা শুধুমাত্র ১৮ বছর বা তার অধিক বয়সের গ্রাহকদের জন্য প্রযোজ্য। আমাদের সাইট ব্যবহার করে, আপনি নিশ্চিত করছেন যে আপনি এই শর্ত পূরণ করেন।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">২. পণ্য এবং অর্ডার</h3>
+          <ul className="list-disc pl-6">
+            <li>সমস্ত অর্ডার নিশ্চিত হওয়ার পরে তা প্রক্রিয়াকরণ করা হবে।</li>
+            <li>আমরা পণ্যের স্টক উপলব্ধতার উপর ভিত্তি করে অর্ডার গ্রহণ করি।</li>
+            <li>আমরা অর্ডার বাতিল করার অধিকার সংরক্ষণ করি যদি কোনো কারিগরি বা অপারেশনাল সমস্যা দেখা দেয়।</li>
+          </ul>
+
+          <h3 className="font-semibold text-gray-900">৩. অর্থপ্রদান ও রিফান্ড</h3>
+          <p>
+            আমাদের ওয়েবসাইটে প্রদত্ত পেমেন্ট পদ্ধতিগুলি ব্যবহার করে গ্রাহকরা অর্থ প্রদান করতে পারবেন। একবার অর্থপ্রদান নিশ্চিত হলে, সেটি ফেরতযোগ্য নয়, তবে বিশেষ পরিস্থিতিতে আমরা রিফান্ড অফার করতে পারি।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">৪. গোপনীয়তা ও নিরাপত্তা</h3>
+          <p>
+            আমরা আমাদের গ্রাহকদের ব্যক্তিগত তথ্য সুরক্ষিত রাখার প্রতিশ্রুতি দিচ্ছি। আপনার তথ্য আমাদের গোপনীয়তা নীতির অধীনে রক্ষা করা হবে এবং আমরা তৃতীয় পক্ষের সঙ্গে শেয়ার করব না।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">৫. আইনি দায়</h3>
+          <p>
+            আমাদের ওয়েবসাইটে প্রদত্ত সমস্ত তথ্য সঠিক রাখতে আমরা সর্বোচ্চ চেষ্টা করি, তবে আমরা কোনো তথ্যের নির্ভুলতার গ্যারান্টি দিতে পারি না।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">৬. পরিবর্তন ও সংশোধন</h3>
+          <p>
+            আমরা যে কোনো সময় এই শর্তাবলী পরিবর্তন করার অধিকার সংরক্ষণ করি। পরিবর্তিত নীতিমালা ওয়েবসাইটে আপডেট করা হবে।
+          </p>
+
+          <h3 className="font-semibold text-gray-900">৭. যোগাযোগ</h3>
+          <p>
+            আমাদের শর্তাবলী সম্পর্কে আরও জানতে, আমাদের সাথে যোগাযোগ করুন: <strong>support@confectionery.com</strong>
+          </p>
+        </div>
+      </Modal>
+
+
+
     </div>
   );
 };

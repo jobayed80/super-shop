@@ -105,8 +105,8 @@ const FooterTop = () => {
                   </svg>
                   <div>
                     <h4 className="font-semibold text-gray-900 text-sm mb-1">Our Location</h4>
-                    <p className="text-gray-600 text-sm">123 Confectionary Avenue</p>
-                    <p className="text-gray-600 text-sm">New York, NY 10001</p>
+                    <p className="text-gray-600 text-sm"> Saidabad, Sirajganj Sadar, Sirajganj</p>
+                    <p className="text-gray-600 text-sm">Rājshāhi Division, Bangladesh</p>
                   </div>
                 </div>
 
@@ -137,7 +137,7 @@ const FooterTop = () => {
                   </svg>
                   <div>
                     <h4 className="font-semibold text-gray-900 text-sm mb-1">Email Address</h4>
-                    <p className="text-gray-600 text-sm">contact@confectionary.com</p>
+                    <p className="text-gray-600 text-sm">ali35-2932@diu.edu.bd</p>
                   </div>
                 </div>
               </div>

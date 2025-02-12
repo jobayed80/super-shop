@@ -189,7 +189,7 @@ const TopProduct = () => {
         {/* <p className="text-gray-700 mt-2 text-sm">{product.description}</p> */}
       </div>
       <div className="flex items-center justify-between mt-3">
-        <p className="text-green-600 font-semibold pt-5">${product.price}</p>
+        <p className="text-green-600 font-semibold pt-5">৳{product.price}</p>
         <button
           onClick={(e) => {
             e.stopPropagation();

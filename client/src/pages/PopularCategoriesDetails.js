@@ -157,7 +157,7 @@ const PopularCategoriesDetails = () => {
                                     <h2 className="text-xl font-semibold">{product.name}</h2>
                                     <p className="text-sm text-gray-600">Category: {product.category}</p>
                                     <div className="flex items-center justify-between mt-2">
-                                        <p className="text-green-600 font-semibold">${product.price}</p>
+                                        <p className="text-green-600 font-semibold">৳{product.price}</p>
                                         <button onClick={(e) => {
                                             e.stopPropagation();
                                             handleAddToCart(product);

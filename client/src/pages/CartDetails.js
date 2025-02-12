@@ -230,9 +230,9 @@ const CartDetails = () => {
 
                             {/* Price Section */}
                             <div className="flex items-center flex-wrap gap-4 mt-6">
-                                <h4 className="text-gray-800 text-2xl font-bold">${product.price}</h4>
+                                <h4 className="text-gray-800 text-2xl font-bold">৳{product.price}</h4>
                                 <p className="text-gray-500 text-lg">
-                                    <strike>${(product.price) - (product.price - 1)}</strike>{" "}
+                                    <strike>৳{(product.price) - (product.price - 1)}</strike>{" "}
                                     <span className="text-sm ml-1.5">Tax included</span>
                                 </p>
                             </div>
@@ -352,11 +352,11 @@ const CartDetails = () => {
                                     </div>
 
                                     {/* Price */}
-                                    <p className="text-lg font-bold text-gray-800 mt-2">${product.price}</p>
+                                    <p className="text-lg font-bold text-gray-800 mt-2">৳{product.price}</p>
 
                                     {/* Discount and Savings */}
                                     <div className="flex items-center space-x-2 mt-1">
-                                        <p className="text-sm text-gray-500 line-through">$15.99</p>
+                                        <p className="text-sm text-gray-500 line-through">৳15.99</p>
                                         <p className="text-sm text-green-600 font-semibold">Save 20%</p>
                                     </div>
 

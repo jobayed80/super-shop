@@ -285,7 +285,7 @@ const handlePrev = () => {
                   <p className="text-sm text-gray-600">Category: {product.category}</p>
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="text-green-600 font-semibold mt-5">${product.price}</p>
+                  <p className="text-green-600 font-semibold mt-5">৳{product.price}</p>
                   <button
                     onClick={() => handleAddToCart(product)}
                     className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:bg-blue-600"
