@@ -24,7 +24,7 @@ const AboutUs = () => {
                     <div className="lg:flex lg:items-center lg:justify-between">
                         <div className="lg:w-1/2">
                             <img
-                                src={Story} // Replace with your image
+                                src={Story} //     Replace with your image
                                 alt="Our Story"
                                 className="rounded-lg shadow-lg"
                             />
