@@ -14,7 +14,7 @@ const Header = ({ isAdmin, setIsAdmin }) => {
 
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false); // State for user dropdow
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
   const [email, setEmail] = useState("johndoe@example.com");
@@ -32,11 +32,12 @@ const Header = ({ isAdmin, setIsAdmin }) => {
   ];
 
   // Ref to detect clicks outside the dropdown
-  const dropdownRef = useRef(null);
 
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
+  const toggleUserDropdown = () => setIsUserDropdownOpen(!isUserDropdownOpen); // Toggle dropdow
 
   // Close dropdown if clicked outside
   useEffect(() => {
@@ -52,9 +53,55 @@ const Header = ({ isAdmin, setIsAdmin }) => {
     };
   }, []);
 
-  // Close dropdown when a menu item is clicked
-  const closeDropdownOnSelect = () => setIsDropdownOpen(false);
+    // Close dropdown when a menu item is clicked for mobile
+    const closeDropdownOnSelectMobile = () => setIsUserDropdownOpen(false);
 
+    const handleProfileMobile = () =>{
+      navigate('./user-information')
+      closeDropdownOnSelectMobile()
+    }
+    const handleLogout = async () => {
+      try {
+        await supabase.auth.signOut();
+        navigate("/user-signin");
+      } catch (error) {
+        console.error("Error logging out:", error.message);
+      }
+      closeDropdownOnSelectMobile()
+    };
+  
+
+ 
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+    // Close dropdown when a menu item is clicked for mobile
+    const closeDropdownOnSelectDesktop = () => setDropdownOpen(false);
+  
+    // Close dropdown when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target )) {
+          setDropdownOpen(false);
+        }
+      };
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+    
+    const handleProfileDesktop = () =>{
+      navigate('./user-information')
+      closeDropdownOnSelectDesktop()
+    }
+    const handleLogoutDesktop = async () => {
+      try {
+        await supabase.auth.signOut();
+        navigate("/user-signin");
+      } catch (error) {
+        console.error("Error logging out:", error.message);
+      }
+      closeDropdownOnSelectDesktop()
+    };
 
 
 
@@ -62,14 +109,6 @@ const Header = ({ isAdmin, setIsAdmin }) => {
   const [storeEmail, setStoreEmail] = useState("");
   const [profileImage, setProfileImage] = useState("");
 
-  const handleLogout = async () => {
-    try {
-      await supabase.auth.signOut();
-      navigate("/");
-    } catch (error) {
-      console.error("Error logging out:", error.message);
-    }
-  };
 
 
   // Handle admin login
@@ -135,23 +174,69 @@ const Header = ({ isAdmin, setIsAdmin }) => {
     <div>
       {/* Navbar */}
       <nav className="w-full bg-gradient-to-r from-white via-gray-500 to-gray-200 shadow-md p-8 fixed top-0 z-50">
+
+
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
           <div class="text-xl font-bold text-green-600 animate-bounce "><Link to={'/'}>Galaxy Shop</Link></div>
 
-          {/* Mobile Menu Icon */}
-          <div className="md:hidden flex items-center justify-center gap-2">
-          <User
-              // onClick={toggleDropdown}
-              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer text-green-600"
-            />
-          <button onClick={() => setModal2Open(true)}><img className="w-8 h-8 " src={Adminlogo}></img></button>
-            <FiMenu
-              onClick={handleMenuToggle}
-              className="w-6 h-6 text-green-700 hover:text-gray-900 cursor-pointer"
-            />
+          <div>
+            {/* Mobile Menu Icon */}
+            <div className="md:hidden flex items-center justify-center gap-2">
+              {/* User Icon with Dropdown */}
+              <div className="relative">
+                <User
+                  onClick={toggleUserDropdown}
+                  className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer text-green-600"
+                />
+                {/* Dropdown Menu */}
+                {isUserDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-50">
+                    <ul className="py-2">
+                      <li>
+                        
+                        <a
+                        onClick={handleProfileMobile}
+                          // to={'./user-information'}
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        >
+                          Profile
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                        >
+                          Settings
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+                        >
+                          Logout
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              {/* Admin Button */}
+              <button onClick={() => setModal2Open(true)}>
+                <img className="w-8 h-8" src={Adminlogo} alt="Admin Logo" />
+              </button>
+
+              {/* Menu Toggle Button */}
+              <FiMenu
+                onClick={handleMenuToggle}
+                className="w-6 h-6 text-green-700 hover:text-gray-900 cursor-pointer"
+              />
+            </div>
           </div>
-          
+
 
           <div className="hidden md:flex space-x-6">
             {bottomNavigation.map((item) => (
@@ -167,63 +252,36 @@ const Header = ({ isAdmin, setIsAdmin }) => {
           </div>
 
 
-          
+
 
           {/* Icons Section */}
-          <div className="flex items-center space-x-4 hidden md:flex">
-            <User
-              onClick={toggleDropdown}
-              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer text-green-600"
-            />
+          <div className="flex items-center space-x-4 hidden md:flex relative">
+            {/* User Icon & Dropdown */}
+            <div  className="relative">
+              <User
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer text-green-600"
+              />
+              {dropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 transition-opacity duration-200">
+                  <ul className="text-sm text-gray-700">
+                    <li onClick={handleProfileDesktop} className="p-2 hover:bg-gray-100 cursor-pointer">Profile</li>
+                    <li className="p-2 hover:bg-gray-100 cursor-pointer">Settings</li>
+                    <li onClick={handleLogoutDesktop} className="p-2 hover:bg-gray-100 cursor-pointer text-red-500">Logout</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Shopping Cart Icon */}
             <ShoppingCart className="w-6 h-6 text-green-600 hover:text-gray-900 cursor-pointer" />
-                {/* Show Admin button only if NOT an admin */}
-                {/* {!isAdmin && <button onClick={() => setModal2Open(true)}><Adminlogo></Adminlogo></button>} */}
-                <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 " src={Adminlogo}></img></button>
+
+            {/* Admin Logo */}
+            <button onClick={() => setModal2Open(true)}>
+              <img className="w-10 h-10" src={Adminlogo} alt="Admin Logo" />
+            </button>
           </div>
 
-          {/* <div className="flex items-center space-x-4 ">        
-            <div className="relative">
-           
-             <AnimatePresence>
-                {isDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute right-0 top-8 w-64 bg-gradient-to-r from-white via-gray-200 to-gray-400 rounded-md shadow-lg mt-5"
-                  >
-                    
-                    <div className="flex items-center space-x-4 my-3 ml-2">
-                      <img
-                        src="https://img.freepik.com/free-vector/cake-factory-banner-template_23-2148861831.jpg"
-                        alt="Profile"
-                        className="w-10 h-10 rounded-full"
-                      />
-                      <div>
-                        <div className="font-semibold">{name}</div>
-                        <div className="text-sm">{email}</div>
-                      </div>
-                    </div>
-                    <hr className="border-gray-400 mb-3" />
-                   
-                    <div className="space-y-2">
-                      <div onClick={closeDropdownOnSelect} className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm"><Link to={"/user-information"}>Profile</Link></div>
-                      <div onClick={closeDropdownOnSelect} className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm">Settings</div>
-                      <div onClick={closeDropdownOnSelect} className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm">Customer</div>
-                      <hr className="bg-red-200"></hr>
-                      <div
-                        className="cursor-pointer hover:bg-white hover:text-gray-900 rounded px-3 py-2 text-sm"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div> */}
 
 
 
