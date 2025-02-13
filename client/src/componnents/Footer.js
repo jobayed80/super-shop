@@ -376,7 +376,7 @@ const Footer = () => {
 
           <h3 className="font-semibold text-gray-900">৭. যোগাযোগ</h3>
           <p>
-            আমাদের শর্তাবলী সম্পর্কে আরও জানতে, আমাদের সাথে যোগাযোগ করুন: <strong>support@confectionery.com</strong>
+            আমাদের শর্তাবলী সম্পর্কে আরও জানতে, আমাদের সাথে যোগাযোগ করুন: <strong>ali35-2932@diu.edu.bd</strong>
           </p>
         </div>
       </Modal>

@@ -137,18 +137,21 @@ const Header = ({ isAdmin, setIsAdmin }) => {
       <nav className="w-full bg-gradient-to-r from-white via-gray-500 to-gray-200 shadow-md p-8 fixed top-0 z-50">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
-          <div class="text-xl font-bold text-gray-900 animate-bounce"><Link to={'/'}>Galaxy Shop</Link></div>
-
+          <div class="text-xl font-bold text-green-600 animate-bounce "><Link to={'/'}>Galaxy Shop</Link></div>
 
           {/* Mobile Menu Icon */}
-          <div className="md:hidden flex items-center justify-center gap-3">
-          <button onClick={() => setModal2Open(true)}><img className="w-10 h-10 " src={Adminlogo}></img></button>
+          <div className="md:hidden flex items-center justify-center gap-2">
+          <User
+              // onClick={toggleDropdown}
+              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer text-green-600"
+            />
+          <button onClick={() => setModal2Open(true)}><img className="w-8 h-8 " src={Adminlogo}></img></button>
             <FiMenu
               onClick={handleMenuToggle}
-              className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer"
+              className="w-6 h-6 text-green-700 hover:text-gray-900 cursor-pointer"
             />
-
           </div>
+          
 
           <div className="hidden md:flex space-x-6">
             {bottomNavigation.map((item) => (
