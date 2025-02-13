@@ -141,7 +141,7 @@ const AboutUs = () => {
                                 <p className="text-gray-600 italic">
                                     "I love their creative flavors and the care they put into every product."
                                 </p>
-                                <p className="mt-4 font-semibold text-gray-900">- Emily R.</p>
+                                <p className="mt-4 font-semibold text-gray-900">- Emily R. </p>
                             </div>
                         </div>
                     </div>
