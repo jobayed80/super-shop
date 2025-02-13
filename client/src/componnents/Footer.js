@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Button, Modal } from 'antd';
-
+import { Button, Modal, Collapse } from 'antd';
+import { PlusOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 
 
 
 const Footer = () => {
 
+  const { Panel } = Collapse;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -33,6 +35,19 @@ const Footer = () => {
 
   const handleCancelTerms = () => {
     isModalOpenTerms(false);
+  };
+
+  const [isModalOpenFAQ, setIsModalOpenFAQ] = useState(false);
+  const showModalFAQ = () => {
+    setIsModalOpenFAQ(true);
+  };
+
+  const handleOkFAQ = () => {
+    setIsModalOpenFAQ(false);
+  };
+
+  const handleCancelFAQ = () => {
+    isModalOpenFAQ(false);
   };
 
   
@@ -210,12 +225,12 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="/contact-us"
+                <Link
+                  to={'/contact'}
                   className="hover:text-gray-500  text-sm"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -243,12 +258,13 @@ const Footer = () => {
                 </p>
               </li>
               <li>
-                <a
+                <p
                   href="/faq"
-                  className="hover:text-gray-500  text-sm"
+                  className="hover:text-gray-500  cursor-pointer text-sm"
+                  onClick={showModalFAQ}
                 >
                   FAQ
-                </a>
+                </p>
               </li>
             </ul>
           </div>
@@ -256,7 +272,7 @@ const Footer = () => {
 
         <div className="mt-16 py-6 border-t-2 border-gray-100">
           <p className="text-center text-sm text-gray-300">
-            &copy; 2025 Sweet Delights. All rights reserved.
+            &copy; 2025 Galaxy Super Shop. All rights reserved.
           </p>
         </div>
       </footer>
@@ -264,7 +280,12 @@ const Footer = () => {
 
 
 
-      <Modal title=" গোপনীয়তা নীতি দেখুন" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title=" গোপনীয়তা নীতি দেখুন" open={isModalOpen} onOk={handleOk}  closable={false} 
+        footer={[
+          <Button key="ok" type="primary" onClick={() => setIsModalOpen(false)}>
+            OK
+          </Button>,
+        ]} >
       
         {/* Privacy Policy Content in Bangla */}
         <div className="text-gray-700 space-y-4">
@@ -307,7 +328,13 @@ const Footer = () => {
       </Modal>
 
 
-      <Modal title="  শর্তাবলী দেখুন " open={isModalOpenTerms} onOk={handleOkTerms} keyboard={true} width={900}>
+      <Modal title="  শর্তাবলী দেখুন " open={isModalOpenTerms} onOk={handleOkTerms} keyboard={true} width={900} closable={false}
+      footer={[
+        <Button key="ok" type="primary" onClick={() => setIsModalOpenTerms(false)}>
+          OK
+        </Button>,
+      ]} 
+      >
       
         {/* Terms & Conditions in Bangla */}
         <div className="text-gray-700 space-y-4">
@@ -352,6 +379,32 @@ const Footer = () => {
             আমাদের শর্তাবলী সম্পর্কে আরও জানতে, আমাদের সাথে যোগাযোগ করুন: <strong>support@confectionery.com</strong>
           </p>
         </div>
+      </Modal>
+
+
+
+      <Modal title="  মিষ্টান্ন সম্পর্কিত সাধারণ জিজ্ঞাসা (FAQ) " open={isModalOpenFAQ} onOk={handleOkFAQ} keyboard={true} width={900} closable={false}
+      footer={[
+        <Button key="ok" type="primary" onClick={() => setIsModalOpenFAQ(false)}>
+          OK
+        </Button>,
+      ]} 
+      >
+      
+      <Collapse accordion expandIcon={({ isActive }) => <PlusOutlined rotate={isActive ? 90 : 0} />}>
+          <Panel header="আপনার কনফেকশনারি পণ্যের উপাদান কী?" key="1">
+            <p>আমাদের কনফেকশনারি পণ্যগুলি খাঁটি চিনি, ময়দা, কোকো, দুধ, মাখন এবং প্রাকৃতিক ফ্লেভার দিয়ে তৈরি।</p>
+          </Panel>
+          <Panel header="আপনার দোকানে কী ধরনের মিষ্টান্ন পাওয়া যায়?" key="2">
+            <p>আমাদের দোকানে কেক, পেস্ট্রি, ডোনাট, চকোলেট, বিস্কুট, রসমালাই, সন্দেশ, লাড্ডু ইত্যাদি পাওয়া যায়।</p>
+          </Panel>
+          <Panel header="কিভাবে অর্ডার করবো?" key="3">
+            <p>আপনার পছন্দের পণ্য অনলাইনে অথবা সরাসরি আমাদের দোকানে এসে অর্ডার দিতে পারেন।</p>
+          </Panel>
+          <Panel header="ডেলিভারি সার্ভিস আছে কি?" key="4">
+            <p>হ্যাঁ, আমরা নির্দিষ্ট এলাকার মধ্যে হোম ডেলিভারি প্রদান করি।</p>
+          </Panel>
+        </Collapse>
       </Modal>
 
 

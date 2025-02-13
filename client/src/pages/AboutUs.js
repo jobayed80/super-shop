@@ -3,6 +3,7 @@ import { FaHeart, FaAward, FaSmile, FaUsers } from 'react-icons/fa'; // Icons fo
 // import team1 from '../assets/team1.jpg'; // Sample team member images
 // import team2 from '../assets/team2.jpg';
 // import team3 from '../assets/team3.jpg';
+import Story from '../assets/story.webp'
 
 const AboutUs = () => {
     return (
@@ -23,7 +24,7 @@ const AboutUs = () => {
                     <div className="lg:flex lg:items-center lg:justify-between">
                         <div className="lg:w-1/2">
                             <img
-                                src="https://images.pexels.com/photos/884788/pexels-photo-884788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" // Replace with your image
+                                src={Story} // Replace with your image
                                 alt="Our Story"
                                 className="rounded-lg shadow-lg"
                             />
@@ -31,7 +32,7 @@ const AboutUs = () => {
                         <div className="lg:w-1/2 lg:pl-12 mt-8 lg:mt-0">
                             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
                             <p className="text-gray-600 mb-4">
-                                Founded in 2010, Sweet Delights began as a small family-owned bakery in the heart of the city. Our passion
+                                Founded in 2022, Sweet Delights began as a small family-owned bakery in the heart of the city. Our passion
                                 for creating delicious, handcrafted confectionaries quickly gained popularity, and today, we are proud to
                                 serve customers across the country.
                             </p>
@@ -90,29 +91,29 @@ const AboutUs = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <div className="text-center">
                             <img
-                                src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                src="https://scontent.fdac155-1.fna.fbcdn.net/v/t39.30808-1/474951097_3935186093435549_3872658062708882747_n.jpg?stp=cp6_dst-jpg_s160x160_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_ohc=17HxDpzAvqsQ7kNvgFe_OcL&_nc_oc=AdjVQX-zzZYMB3ofkQn_oGH_CWLBO_JoncaAahFlzhLEKB-4GfeNVNBEL_hWAN6leM0&_nc_zt=24&_nc_ht=scontent.fdac155-1.fna&_nc_gid=AGanAaT85ZuUB901Kap7fqw&oh=00_AYBfuUpyq4tglYkAjU1FjKbarJy1AO_ihYcQhd4NeBixGw&oe=67B39A43"
                                 alt="Team Member 1"
                                 className="w-48 h-48 rounded-full mx-auto mb-4"
                             />
-                            <h3 className="text-xl font-semibold text-gray-900">John Doe</h3>
+                            <h3 className="text-xl font-semibold text-gray-900">Ali Abdullah</h3>
                             <p className="text-gray-600">Founder & Head Chef</p>
                         </div>
                         <div className="text-center">
                             <img
-                                src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                src="https://scontent.fdac155-1.fna.fbcdn.net/v/t39.30808-6/252975239_3066658490247460_779879383292794001_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=jrhNM3NeQOAQ7kNvgFoO2U7&_nc_oc=AdhIJ4LixdSjpx-1v8aMAUwomZjmCwcU-r8TYpQw7p7hMpt-9lBtexkVlqErnOMCkt4&_nc_zt=23&_nc_ht=scontent.fdac155-1.fna&_nc_gid=AvVr6lHtVJzCY326hyz7pJC&oh=00_AYCc-slMyV2DRkD47Q0xjyCtt5BrgH3dp-hw4XPi_xe2rw&oe=67B3A1DA"
                                 alt="Team Member 2"
                                 className="w-48 h-48 rounded-full mx-auto mb-4"
                             />
-                            <h3 className="text-xl font-semibold text-gray-900">Jane Smith</h3>
+                            <h3 className="text-xl font-semibold text-gray-900">Md Jobayed Hossain rabbi</h3>
                             <p className="text-gray-600">Pastry Artist</p>
                         </div>
                         <div className="text-center">
                             <img
-                                src="https://images.pexels.com/photos/110686/pexels-photo-110686.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                src="https://scontent.fdac155-1.fna.fbcdn.net/v/t39.30808-1/473789352_2435647156773545_8250955535081314771_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=DLRcR3NRbxcQ7kNvgHQJy4X&_nc_oc=Adir1hzCTUzK-Y9pcpUPV404uC7a9fP9xklgPlnzG0SXX02tKK6uxgmT1rw00tZuU3Q&_nc_zt=24&_nc_ht=scontent.fdac155-1.fna&_nc_gid=Av9oNqz2K6_hVpj5EtGOofY&oh=00_AYCA69HQmeYxMZAVH-g0_GKx9fxCy8S-lB0T9c6RqypIIg&oe=67B39849"
                                 alt="Team Member 3"
                                 className="w-48 h-48 rounded-full mx-auto mb-4"
                             />
-                            <h3 className="text-xl font-semibold text-gray-900">Mike Johnson</h3>
+                            <h3 className="text-xl font-semibold text-gray-900">Nishat Mondal</h3>
                             <p className="text-gray-600">Marketing Director</p>
                         </div>
                     </div>

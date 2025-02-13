@@ -74,8 +74,8 @@ const ContactUs = () => {
           )}
           <div className="mt-6 text-gray-700">
             <p>Or reach us at:</p>
-            <p className="font-semibold">contact@yourwebsite.com</p>
-            <p>123-456-7890</p>
+            <p className="font-semibold">contact@galaxysupershop.com</p>
+            <p>+8801717-134859</p>
             <p className="mt-4">Follow us on social media:</p>
             <div className="flex space-x-4 mt-2">
               <a href="#" className="text-blue-600 hover:text-blue-800">

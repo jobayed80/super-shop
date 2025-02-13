@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Header from './componnents/Header';
 import Footer from './componnents/Footer';
@@ -25,6 +26,9 @@ import Customers from './Admin Panel/Customers';
 import AdminSidebar from './Admin Panel/AdminSidebar';
 import ProductDetails from './Admin Panel/ProductDetails';
 import AdminMainDashboard from './Admin Panel/AdminMainDashboard';
+
+import PageLoader from './componnents/PageLoader ';
+import ScrollToLoading from './componnents/ScrollToLoading';
 // import Logout from './Admin Panel/Logout';
 
 function App() {
@@ -34,9 +38,14 @@ function App() {
     localStorage.setItem('isAdmin', isAdmin);
   }, [isAdmin]);
 
+  
+
+
+
   return (
     <>
       <Router>
+      <ScrollToLoading /> {/* This will now handle both scrolling and loading */}
         <div className="">
           {!isAdmin && <Header isAdmin={isAdmin} setIsAdmin={setIsAdmin} />}
           <div className="flex-grow">

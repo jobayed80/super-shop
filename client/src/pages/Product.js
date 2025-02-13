@@ -288,7 +288,7 @@ const handlePrev = () => {
                   <p className="text-green-600 font-semibold mt-5">৳{product.price}</p>
                   <button
                     onClick={() => handleAddToCart(product)}
-                    className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:bg-blue-600"
+                    className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-blue-600"
                   >
                     Add to Cart
                   </button>
@@ -303,14 +303,14 @@ const handlePrev = () => {
           <button
             onClick={prevPage}
             disabled={currentPage === 1}
-            className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
             Previous
           </button>
           <button
             onClick={nextPage}
             disabled={currentPage === Math.ceil(products.length / itemsPerPage)}
-            className="bg-blue-500 px-4 py-2 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="bg-green-600 px-4 py-2 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
             Next
           </button>
