@@ -84,7 +84,7 @@ const AboutUs = () => {
                 </div>
 
                 {/* Meet the Team */}
-                <div className="max-w-7xl mx-auto py-16">
+                {/* <div className="max-w-7xl mx-auto py-16">
                     <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
                         Meet the Team
                     </h2>
@@ -117,7 +117,7 @@ const AboutUs = () => {
                             <p className="text-gray-600">Marketing Director</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Customer Testimonials */}
                 <div className=" py-16">
