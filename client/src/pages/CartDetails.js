@@ -6,8 +6,39 @@ import { FaStar } from "react-icons/fa";
 import { FiImage } from "react-icons/fi";
 import { Button, notification } from 'antd';
 import { CheckCircleOutlined } from "@ant-design/icons";
+import ProfileLogo from '../assets/profile.png'
 
 const CartDetails = () => {
+
+
+    const [email, setEmail] = useState("");
+
+    const checkEmail = async (e) => {
+       
+        const { data: session } = await supabase.auth.getSession();
+        if (session?.session) {
+            const { user } = session.session;
+            if (user?.email_confirmed_at) {
+                setEmail(user.email); // Store user information in the state
+                console.log(user.email)
+            
+            } else {
+                alert("Email is not verified. Redirecting to login...");
+            }
+        } else {
+        
+        }
+    }
+
+    useEffect(() => {
+        checkEmail()
+    }, []);
+
+
+
+
+
+
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [totalComments, setTotalComments] = useState(0);
@@ -60,6 +91,7 @@ const CartDetails = () => {
 
 
 
+
     useEffect(() => {
         const fetchProduct = async () => {
             const { data, error } = await supabase
@@ -89,6 +121,8 @@ const CartDetails = () => {
         fetchProduct();
         fetchComments();
     }, [id]);
+
+    
 
     const handleAddComment = async () => {
         if (!newComment.trim()) return;
@@ -129,7 +163,7 @@ const CartDetails = () => {
             .insert([
                 {
                     product_id: product.id,
-                    user_name: "Anonymous",
+                    user_name: email,
                     comment: newComment,
                     image_url: imageUrl,
                 },
@@ -187,6 +221,10 @@ const CartDetails = () => {
 
     if (!product) return <p>Loading...</p>;
 
+
+
+    
+
     return (
         <div className="min-h-screen bg-gradient-to-r from-white via-gray-200 to-gray-400 pt-24">
 
@@ -194,7 +232,7 @@ const CartDetails = () => {
 
 
             {/* Product Details */}
-            <div className="font-[sans-serif] p-4  rounded-lg shadow-sm max-w-4xl mx-auto">
+            <div className="font-[sans-serif] p-4  rounded-lg shadow-sm max-w-4xl mx-auto mt-2">
                 <div className="grid items-start grid-cols-1 lg:grid-cols-5 gap-8 max-lg:gap-12 max-sm:gap-8">
                     {/* Product Image Section */}
                     <div className="w-full lg:sticky top-0 lg:col-span-3">
@@ -384,7 +422,7 @@ const CartDetails = () => {
                 {/* Comment Input */}
                 <div className="mt-4 flex items-start space-x-4 ">
                     <img
-                        src="https://cdn.pixabay.com/photo/2015/04/23/22/00/new-year-background-736885_1280.jpg"
+                        src={ProfileLogo}
                         alt="User"
                         className="w-12 h-12 rounded-full object-cover bg-green-800"
                     />
@@ -426,18 +464,18 @@ const CartDetails = () => {
                         >
                             {/* Profile Picture */}
                             <img
-                                src={comment.image_url || "https://via.placeholder.com/40"}
+                                src={ProfileLogo || "https://via.placeholder.com/40"}
                                 alt="User"
-                                className="w-12 h-12 rounded-full object-cover"
+                                className="w-12 h-12 rounded-full object-cover bg-green-800"
                             />
 
                             {/* Comment Content */}
                             <div className="flex-1 mt-3 md:mt-0">
                                 <div className="flex items-center justify-between">
-                                    <p className="text-sm font-semibold text-gray-900">{comment.user_name}</p>
+                                    <p className="text-sm font-semibold text-gray-500 ">{comment.user_name}</p>
                                     <p className="text-xs text-gray-500">{new Date(comment.created_at).toLocaleString()}</p>
                                 </div>
-                                <p className="text-sm text-gray-700 mt-1">{comment.comment}</p>
+                                <p className="text-md text-gray-700 mt-1">{comment.comment}</p>
                             </div>
 
                             {/* Comment Image */}

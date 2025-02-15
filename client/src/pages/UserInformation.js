@@ -31,62 +31,7 @@ const UserInformation = () => {
     const [notification, setNotification] = useState(false);
   
     // const handleUpdate = () => {
-    //   setLoading(true);
-    //   setTimeout(() => {
-    //     setLoading(false);
-    //     setNotification(true);
-    //     setTimeout(() => setNotification(false), 3000);
-    //   }, 1000);
-    // };
-  
-    // const handleInsert = () => {
-    //   setLoading(true);
-    //   setTimeout(() => {
-    //     setLoading(false);
-    //     setNotification(true);
-    //     setTimeout(() => setNotification(false), 3000);
-    //   }, 1000);
-    // };
-  
-  
-  
-  
-  
-    // Handle image upload
-    // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //   if (e.target.files && e.target.files[0]) {
-    //     setProfileImage(e.target.files[0]);
-    //   }
-    // };
-  
-    // Search user by email
-    // const handleSearch = async () => {
-    //   setLoading(true);
-    //   try {
-    //     const { data, error } = await supabase
-    //       .from("users")
-    //       .select("*")
-    //       .eq("email", searchEmail)
-    //       .single();
-  
-    //     if (error) throw error;
-  
-    //     // Populate fields with fetched data
-    //     setName(data.name || "");
-    //     setEmail(data.email || "");
-    //     setPhoneNumber(data.phoneNumber || "");
-    //     setFavoriteConfection(data.favoriteConfection || "");
-    //     setDeliveryAddress(data.deliveryAddress || "");
-    //     setDietaryPreferences(data.dietaryPreferences || "");
-    //     alert("User found! You can now update the details.");
-    //   } catch (error) {
-    //     alert("Error fetching user: " + error.message);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-  
-  
+
     // Insert data into Supabase
     const handleInsert = async () => {
       setLoading(true);
