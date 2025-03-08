@@ -1,5 +1,14 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { supabase } from "../lib/createClient";
+
+import { Button, Card, Modal, Progress, Typography } from "antd";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+
+const { Title, Paragraph } = Typography;
+
+const passage = "The quick brown fox jumps over the lazy dog. It is a well-known pangram.";
+
+
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -23,6 +32,58 @@ const ContactUs = () => {
       setFormData({ name: "", email: "", message: "" });
     }
   };
+
+
+
+
+
+
+
+
+  const [isRecording, setIsRecording] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [scores, setScores] = useState({ fluency: 0, stress: 0, pronunciation: 0, speed: 0 });
+
+  const { transcript, resetTranscript, listening } = useSpeechRecognition();
+
+  useEffect(() => {
+    if (!listening && isRecording) {
+      calculateScores();
+      setIsModalVisible(true);
+      setIsRecording(false);
+    }
+  }, [listening]);
+
+  const calculateScores = () => {
+    const words = passage.toLowerCase().split(" ");
+    const spokenWords = transcript.toLowerCase().split(" ");
+    const matchedWords = spokenWords.filter((word) => words.includes(word)).length;
+
+    const pronunciationScore = (matchedWords / words.length) * 90;
+    const fluencyScore = (transcript.split(" ").length / words.length) * 90;
+    const stressScore = Math.min(90, pronunciationScore + 5);
+    const speedScore = Math.min(90, fluencyScore + 10);
+
+    setScores({
+      pronunciation: Math.round(pronunciationScore),
+      fluency: Math.round(fluencyScore),
+      stress: Math.round(stressScore),
+      speed: Math.round(speedScore),
+    });
+  };
+
+  const startRecording = () => {
+    resetTranscript();
+    SpeechRecognition.startListening({ continuous: true, language: "en-US" });
+    setIsRecording(true);
+  };
+
+  const stopRecording = () => {
+    SpeechRecognition.stopListening();
+  };
+
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-white via-gray-200 to-gray-400 items-center justify-center mx-auto">
@@ -102,6 +163,32 @@ const ContactUs = () => {
             loading="lazy"
           ></iframe>
         </div>
+
+
+
+        <div style={{ maxWidth: 600, margin: "auto", textAlign: "center", padding: 20 }}>
+      <Card>
+        <Title level={4}>Read Aloud</Title>
+        <Paragraph>{passage}</Paragraph>
+        <Button type="primary" onClick={startRecording} disabled={isRecording}>
+          {isRecording ? "Listening..." : "Start Speaking"}
+        </Button>
+        <Button onClick={stopRecording} disabled={!isRecording} style={{ marginLeft: 10 }}>
+          Stop
+        </Button>
+      </Card>
+
+      <Modal title="Your Score" visible={isModalVisible} onOk={() => setIsModalVisible(false)} onCancel={() => setIsModalVisible(false)}>
+        <Paragraph><b>Transcript:</b> {transcript || "No speech detected"}</Paragraph>
+        <Progress percent={scores.pronunciation} status="active" format={() => `Pronunciation: ${scores.pronunciation}/90`} />
+        <Progress percent={scores.fluency} status="active" format={() => `Fluency: ${scores.fluency}/90`} />
+        <Progress percent={scores.stress} status="active" format={() => `Stress: ${scores.stress}/90`} />
+        <Progress percent={scores.speed} status="active" format={() => `Speed: ${scores.speed}/90`} />
+      </Modal>
+    </div>
+
+
+    
       </div>
     </div>
   );
