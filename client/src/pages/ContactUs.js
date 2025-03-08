@@ -8,7 +8,7 @@ const { Title, Paragraph } = Typography;
 
 // Random collection of passages
 const passages = [
-  "Across the globe,there is a wide spread effort to explore methods for extracting carbon dioxide from the atmosphere or power plant emissions and transforming it into a valuable resource.Among the various ideas being explored,the concept of converting carbon dioxide into a stable fuel shows significant promise."
+  "Across the globe,there is a wide spread effort to explore methods for extracting carbon dioxide from the atmosphere or power plant emissions and transforming it into a valuable resource.Among the various ideas being explored,the concept of converting carbon dioxide into a stable fuel shows significant promise way."
 ];
 
 
@@ -52,7 +52,7 @@ const ContactUs = () => {
     overall: 0,
   });
   const [selectedPassage, setSelectedPassage] = useState("");
-  
+
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
 
   useEffect(() => {
@@ -70,13 +70,23 @@ const ContactUs = () => {
   const calculateScores = () => {
     const words = selectedPassage.toLowerCase().split(" ");
     const spokenWords = transcript.toLowerCase().split(" ");
+    
+    // Pronunciation Accuracy: match spoken words to reference passage
     const matchedWords = spokenWords.filter((word) => words.includes(word)).length;
+    const pronunciationScore = (matchedWords / words.length) * 100;
 
-    const pronunciationScore = (matchedWords / words.length) * 90;
-    const fluencyScore = (transcript.split(" ").length / words.length) * 90;
-    const stressScore = Math.min(90, pronunciationScore + 5);
-    const speedScore = Math.min(90, fluencyScore + 10);
+    // Fluency: words spoken per unit time (this is simplified)
+    const fluencyScore = (spokenWords.length / words.length) * 100;
 
+    // Stress & Intonation: Mock calculation (ideally would require prosody analysis)
+    const stressScore = pronunciationScore * 0.8; // Simplified formula for mock stress
+
+    // Speech Speed: Based on the duration of the speech (Mocked here)
+    const speechDuration = (spokenWords.length / 2); // Just a simplification for this example
+    const idealDuration = words.length / 2;
+    const speedScore = Math.max(0, Math.min(100, (1 - Math.abs(speechDuration - idealDuration) / idealDuration) * 100));
+
+    // Overall score: Average of individual scores
     const overallScore = (pronunciationScore + fluencyScore + stressScore + speedScore) / 4;
 
     setScores({
@@ -200,11 +210,11 @@ const ContactUs = () => {
 
       <Modal title="Your Score" visible={isModalVisible} onOk={() => setIsModalVisible(false)} onCancel={() => setIsModalVisible(false)}>
         <Paragraph><b>Transcript:</b> {transcript || "No speech detected"}</Paragraph>
-        <Progress percent={scores.pronunciation} status="active" format={() => `Pronunciation: ${scores.pronunciation}/90`} />
-        <Progress percent={scores.fluency} status="active" format={() => `Fluency: ${scores.fluency}/90`} />
-        <Progress percent={scores.stress} status="active" format={() => `Stress: ${scores.stress}/90`} />
-        <Progress percent={scores.speed} status="active" format={() => `Speed: ${scores.speed}/90`} />
-        <Progress percent={scores.overall} status="active" format={() => `Overall: ${scores.overall}/90`} />
+        <Progress percent={scores.pronunciation} status="active" format={() => `Pronunciation: ${scores.pronunciation}/100`} />
+        <Progress percent={scores.fluency} status="active" format={() => `Fluency: ${scores.fluency}/100`} />
+        <Progress percent={scores.stress} status="active" format={() => `Stress: ${scores.stress}/100`} />
+        <Progress percent={scores.speed} status="active" format={() => `Speed: ${scores.speed}/100`} />
+        <Progress percent={scores.overall} status="active" format={() => `Overall: ${scores.overall}/100`} />
       </Modal>
     </div>
 
