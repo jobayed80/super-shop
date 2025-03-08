@@ -6,8 +6,10 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 
 const { Title, Paragraph } = Typography;
 
-const passage = "The quick brown fox jumps over the lazy dog. It is a well-known pangram.";
-
+// Random collection of passages
+const passages = [
+  "Across the globe,there is a wide spread effort to explore methods for extracting carbon dioxide from the atmosphere or power plant emissions and transforming it into a valuable resource.Among the various ideas being explored,the concept of converting carbon dioxide into a stable fuel shows significant promise."
+];
 
 
 const ContactUs = () => {
@@ -42,11 +44,22 @@ const ContactUs = () => {
 
   const [isRecording, setIsRecording] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [scores, setScores] = useState({ fluency: 0, stress: 0, pronunciation: 0, speed: 0 });
-
+  const [scores, setScores] = useState({
+    fluency: 0,
+    stress: 0,
+    pronunciation: 0,
+    speed: 0,
+    overall: 0,
+  });
+  const [selectedPassage, setSelectedPassage] = useState("");
+  
   const { transcript, resetTranscript, listening } = useSpeechRecognition();
 
   useEffect(() => {
+    // Select a random passage when the component mounts
+    const randomPassage = passages[Math.floor(Math.random() * passages.length)];
+    setSelectedPassage(randomPassage);
+
     if (!listening && isRecording) {
       calculateScores();
       setIsModalVisible(true);
@@ -55,7 +68,7 @@ const ContactUs = () => {
   }, [listening]);
 
   const calculateScores = () => {
-    const words = passage.toLowerCase().split(" ");
+    const words = selectedPassage.toLowerCase().split(" ");
     const spokenWords = transcript.toLowerCase().split(" ");
     const matchedWords = spokenWords.filter((word) => words.includes(word)).length;
 
@@ -64,11 +77,14 @@ const ContactUs = () => {
     const stressScore = Math.min(90, pronunciationScore + 5);
     const speedScore = Math.min(90, fluencyScore + 10);
 
+    const overallScore = (pronunciationScore + fluencyScore + stressScore + speedScore) / 4;
+
     setScores({
       pronunciation: Math.round(pronunciationScore),
       fluency: Math.round(fluencyScore),
       stress: Math.round(stressScore),
       speed: Math.round(speedScore),
+      overall: Math.round(overallScore),
     });
   };
 
@@ -81,6 +97,10 @@ const ContactUs = () => {
   const stopRecording = () => {
     SpeechRecognition.stopListening();
   };
+
+
+
+
 
 
 
@@ -169,7 +189,7 @@ const ContactUs = () => {
         <div style={{ maxWidth: 600, margin: "auto", textAlign: "center", padding: 20 }}>
       <Card>
         <Title level={4}>Read Aloud</Title>
-        <Paragraph>{passage}</Paragraph>
+        <Paragraph>{selectedPassage}</Paragraph>
         <Button type="primary" onClick={startRecording} disabled={isRecording}>
           {isRecording ? "Listening..." : "Start Speaking"}
         </Button>
@@ -184,11 +204,13 @@ const ContactUs = () => {
         <Progress percent={scores.fluency} status="active" format={() => `Fluency: ${scores.fluency}/90`} />
         <Progress percent={scores.stress} status="active" format={() => `Stress: ${scores.stress}/90`} />
         <Progress percent={scores.speed} status="active" format={() => `Speed: ${scores.speed}/90`} />
+        <Progress percent={scores.overall} status="active" format={() => `Overall: ${scores.overall}/90`} />
       </Modal>
     </div>
 
 
     
+
       </div>
     </div>
   );
